@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ using Newtonsoft.Json;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using WindowsFormsApp1.Estructura;
 using WindowsFormsApp1.Objetos;
 
 
@@ -27,11 +29,11 @@ namespace WindowsFormsApp1
         private Vector3 Arriba;
         private Matrix4 view;
         private Matrix4 projection;
-
+        Escenario escenario;
         Timer timer;
 
         Shader shader;
-        T t = new T();
+
         private float rotationAngle = 0.0f;
 
         private bool isDragging = false;
@@ -89,26 +91,21 @@ namespace WindowsFormsApp1
 
             view = Matrix4.LookAt(Posicion, Posicion + Objetivo, Arriba);
             projection = ConfigurarMatrizProyeccion();
+            escenario = new Escenario();
+            Objeto t = T.CrearT();
+            escenario.AgregarObjeto("T", t);
 
         }
 
         private void GlControlRender(object sender, PaintEventArgs e)
         {
-            Vector3 centroDeMasa = new Vector3(0.1f, 0.5f, 0.7f);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             
             shader.Use();
             shader.SetMatrix4("view", view);
             shader.SetMatrix4("projection", projection);
-            Matrix4 model;
-            model = Matrix4.CreateTranslation(-centroDeMasa);
-            model *= Matrix4.CreateRotationX(rotationAngle); // Rotate around Z-axis
-            model *= Matrix4.CreateTranslation(centroDeMasa);
 
-            shader.SetMatrix4("model", model);            
-
-            t.Dibujar(centroDeMasa);
-
+            escenario.Dibujar(shader);
 
             lienzoControl.SwapBuffers();
         }
