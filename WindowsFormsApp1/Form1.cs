@@ -94,16 +94,20 @@ namespace WindowsFormsApp1
 
         private void GlControlRender(object sender, PaintEventArgs e)
         {
+            Vector3 centroDeMasa = new Vector3(0.1f, 0.5f, 0.7f);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             
             shader.Use();
             shader.SetMatrix4("view", view);
             shader.SetMatrix4("projection", projection);
-            Matrix4 model = Matrix4.Identity;
-            model *= Matrix4.CreateRotationY(rotationAngle);
+            Matrix4 model;
+            model = Matrix4.CreateTranslation(-centroDeMasa);
+            model *= Matrix4.CreateRotationX(rotationAngle); // Rotate around Z-axis
+            model *= Matrix4.CreateTranslation(centroDeMasa);
+
             shader.SetMatrix4("model", model);            
 
-            t.Dibujar();
+            t.Dibujar(centroDeMasa);
 
 
             lienzoControl.SwapBuffers();
