@@ -117,7 +117,7 @@ namespace WindowsFormsApp1
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            rotationAngle += 0.02f; // Incrementar el ángulo de rotación
+            rotationAngle += 0.02f; 
             lienzoControl.Invalidate(); // Forzar repaint
         }
 
