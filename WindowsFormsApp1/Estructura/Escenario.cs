@@ -31,9 +31,6 @@ namespace WindowsFormsApp1.Estructura
                 obj.Dibujar(shader, Centro);
             }
         }
-
-        
-
         public Objeto Get(string key)
         {
             return this.objetos[key];

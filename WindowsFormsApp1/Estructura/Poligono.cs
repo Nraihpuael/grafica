@@ -6,15 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using System.Drawing;
+using Newtonsoft.Json;
 
 namespace WindowsFormsApp1.Estructura
 {
     public class Poligono
     {
         public float[] Vertices { get; private set; }
+        [JsonIgnore]
         public Matrix4 TransformMatrix { get; set; }
+        [JsonIgnore]
         int VertexBufferObject;
+        [JsonIgnore]
         int ElementBufferObject;
+        [JsonIgnore]
         int VertexArrayObject;
 
 
@@ -25,7 +31,7 @@ namespace WindowsFormsApp1.Estructura
             TransformMatrix = Matrix4.Identity;
         }
 
-        public void Dibujar(Shader shader, Vector3 parteCentro, string nombre)
+        public void Dibujar(Shader shader, Vector3 parteCentro)
         {
 
             int[] indices = new int[] { 0, 1, 2, 2, 3, 0 };
@@ -68,7 +74,9 @@ namespace WindowsFormsApp1.Estructura
 
             // Dibujar el polígono
             GL.BindVertexArray(VertexArrayObject);
-            GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
+            GL.DrawElements(PrimitiveType.Polygon, indices.Length, DrawElementsType.UnsignedInt, 0);
         }
     }
+
 }
+

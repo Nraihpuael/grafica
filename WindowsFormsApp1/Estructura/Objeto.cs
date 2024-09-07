@@ -21,8 +21,7 @@ namespace WindowsFormsApp1.Estructura
 
         public void AgregarParte(string nombre, Parte parte)
         {
-            partes[nombre] = parte;
-
+            partes.Add(nombre, parte);
         }
 
         public void Dibujar(Shader shader, Vector3 escenarioCentro)

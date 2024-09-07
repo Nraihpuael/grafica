@@ -15,21 +15,19 @@ namespace WindowsFormsApp1.Estructura
         public Parte(Vector3 centro)
         {
             poligonos = new Dictionary<string, Poligono>();
-            Centro = centro;
+            this.Centro = centro;
         }
 
         public void AgregarPoligono(string nombre, Poligono poligono)
         {
-            poligonos[nombre] = poligono;
+            poligonos.Add(nombre, poligono);
         }
 
         public void Dibujar(Shader shader, Vector3 objetoCentro)
         {
-            foreach (var kvp in poligonos)
+            foreach (Poligono poligono in poligonos.Values)
             {
-                string nombreCara = kvp.Key;
-                Poligono poligono = kvp.Value;
-                poligono.Dibujar(shader, objetoCentro + Centro, nombreCara);  // Pasar el nombre al método Dibujar
+                poligono.Dibujar(shader, objetoCentro + Centro); 
             }
         }
        
