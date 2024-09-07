@@ -32,8 +32,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.serializadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cargarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -69,12 +73,38 @@
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.serializadorToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1298, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            // 
+            // serializadorToolStripMenuItem
+            // 
+            this.serializadorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cargarToolStripMenuItem,
+            this.guardarToolStripMenuItem});
+            this.serializadorToolStripMenuItem.Name = "serializadorToolStripMenuItem";
+            this.serializadorToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.serializadorToolStripMenuItem.Text = "Serializador";
+            this.serializadorToolStripMenuItem.Click += new System.EventHandler(this.serializadorToolStripMenuItem_Click);
+            // 
+            // cargarToolStripMenuItem
+            // 
+            this.cargarToolStripMenuItem.Name = "cargarToolStripMenuItem";
+            this.cargarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cargarToolStripMenuItem.Text = "Cargar";
+            this.cargarToolStripMenuItem.Click += new System.EventHandler(this.cargarToolStripMenuItem_Click);
+            // 
+            // guardarToolStripMenuItem
+            // 
+            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.guardarToolStripMenuItem.Text = "Guardar";
+            this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -89,6 +119,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -99,6 +131,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ToolStripMenuItem serializadorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cargarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
     }
 }
 

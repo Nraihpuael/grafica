@@ -16,7 +16,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using WindowsFormsApp1.Estructura;
 using WindowsFormsApp1.Objetos;
-
+using WindowsFormsApp1.Utils;
 
 namespace WindowsFormsApp1
 {
@@ -92,8 +92,9 @@ namespace WindowsFormsApp1
             view = Matrix4.LookAt(Posicion, Posicion + Objetivo, Arriba);
             projection = ConfigurarMatrizProyeccion();
             escenario = new Escenario();
-            Objeto t = T.CrearT();
-            escenario.AgregarObjeto("T", t);
+            //Objeto t = T.CrearT();
+            //escenario.AgregarObjeto("T", t);
+           
 
         }
 
@@ -177,11 +178,9 @@ namespace WindowsFormsApp1
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            Console.WriteLine(" ho");
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    Console.WriteLine(" hola");
                     Posicion += Objetivo * speed;
                     break;
                 case Keys.S:
@@ -230,8 +229,80 @@ namespace WindowsFormsApp1
 
         }
 
-       
-        
+        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+                saveFileDialog.Title = "Guardar Escenario";
 
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = saveFileDialog.FileName;
+
+                    // Llamar al método estático SerializarEscenario
+                    var Serializable = new Serializable();
+
+                    Serializable.ConvertirDesdeEscenario(escenario);
+                    Serializable.SerializarEscenario(rutaArchivo);
+
+                    MessageBox.Show("Escenario guardado exitosamente.");
+                }
+            }
+        }
+
+        private void serializadorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cargarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string filePath = null;
+
+            using (var openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "JSON files (*.json)|*.json";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+                }
+            }
+            if (filePath != null)
+            {
+                // Deserializar el escenario desde el archivo JSON
+                Serializable serializable = Serializable.DeserializeEscenario(filePath);
+                escenario = serializable.ConvertirAEscenario();
+
+                // Llamar al método para cargar el TreeView con la estructura del escenario
+                CargarTreeViewConEscenario(escenario);
+                lienzoControl.Invalidate();
+            }
+
+        }
+
+        private void CargarTreeViewConEscenario(Escenario escenario)
+        {
+            treeView1.Nodes.Clear();
+            // Agregar un nodo para el escenario
+            TreeNode nodoEscenario = new TreeNode("Escenario") { Tag = escenario };
+            foreach (var kvpObjeto in escenario.objetos)
+            {
+                string nombreObjeto = kvpObjeto.Key;
+                Objeto objeto = kvpObjeto.Value;
+
+                TreeNode nodoObjeto = new TreeNode(nombreObjeto) { Tag = objeto };
+                foreach (var kvpParte in kvpObjeto.Value.partes)
+                {
+                    string nombreParte = kvpParte.Key;
+                    Parte parte = kvpParte.Value;
+
+                    TreeNode nodoParte = new TreeNode(nombreParte) { Tag = parte };
+                    nodoObjeto.Nodes.Add(nodoParte);
+                }
+                nodoEscenario.Nodes.Add(nodoObjeto);
+            }
+            treeView1.Nodes.Add(nodoEscenario);
+        }
     }
 }

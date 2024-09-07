@@ -100,5 +100,11 @@ namespace WindowsFormsApp1
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public void SetVector3(string name, Vector3 value)
+        {
+            int location = GL.GetUniformLocation(Handle, name);
+            GL.Uniform3(location, value);
+        }
     }
 }
