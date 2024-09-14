@@ -30,11 +30,13 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rotar = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.serializadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trasladar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -48,25 +50,37 @@
             this.panel1.Location = new System.Drawing.Point(0, -1);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1298, 644);
+            this.panel1.Size = new System.Drawing.Size(1359, 704);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.trasladar);
+            this.groupBox1.Controls.Add(this.rotar);
             this.groupBox1.Controls.Add(this.treeView1);
             this.groupBox1.Location = new System.Drawing.Point(12, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(296, 543);
+            this.groupBox1.Size = new System.Drawing.Size(344, 543);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // rotar
+            // 
+            this.rotar.Location = new System.Drawing.Point(20, 214);
+            this.rotar.Name = "rotar";
+            this.rotar.Size = new System.Drawing.Size(75, 23);
+            this.rotar.TabIndex = 1;
+            this.rotar.Text = "Rotar";
+            this.rotar.UseVisualStyleBackColor = true;
+            this.rotar.Click += new System.EventHandler(this.rotar_Click);
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(20, 19);
+            this.treeView1.Location = new System.Drawing.Point(54, 19);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(225, 144);
+            this.treeView1.Size = new System.Drawing.Size(231, 174);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect_1);
             // 
@@ -77,7 +91,7 @@
             this.serializadorToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1298, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1359, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -95,22 +109,32 @@
             // cargarToolStripMenuItem
             // 
             this.cargarToolStripMenuItem.Name = "cargarToolStripMenuItem";
-            this.cargarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cargarToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.cargarToolStripMenuItem.Text = "Cargar";
             this.cargarToolStripMenuItem.Click += new System.EventHandler(this.cargarToolStripMenuItem_Click);
             // 
             // guardarToolStripMenuItem
             // 
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.guardarToolStripMenuItem.Text = "Guardar";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
+            // 
+            // trasladar
+            // 
+            this.trasladar.Location = new System.Drawing.Point(129, 213);
+            this.trasladar.Name = "trasladar";
+            this.trasladar.Size = new System.Drawing.Size(75, 23);
+            this.trasladar.TabIndex = 2;
+            this.trasladar.Text = "Trasladar";
+            this.trasladar.UseVisualStyleBackColor = true;
+            this.trasladar.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 640);
+            this.ClientSize = new System.Drawing.Size(1354, 665);
             this.Controls.Add(this.panel1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -134,6 +158,8 @@
         private System.Windows.Forms.ToolStripMenuItem serializadorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cargarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
+        private System.Windows.Forms.Button rotar;
+        private System.Windows.Forms.Button trasladar;
     }
 }
 

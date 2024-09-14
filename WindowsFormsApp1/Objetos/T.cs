@@ -15,16 +15,16 @@ namespace WindowsFormsApp1.Objetos
 
         public static Objeto CrearT()
         {
-           var t = new Objeto(new Vector3(0.5f, 0.1f, 0.2f));
-           var parteVertical = new Parte(new Vector3(0f, 0f, 0f));
+           var t = new Objeto(new Punto3D(0.8f, 0.1f, 0.2f));
+           var parteVertical = new Parte(new Punto3D(0f, 0f, 0f));
 
            parteVertical.AgregarPoligono("Frontal", new Poligono(
            new float[]
            {
-                -0.1f, 0.5f, 0.1f, 1.0f, 0.0f, 0.0f,
-                 0.1f, 0.5f, 0.1f, 1.0f, 0.0f, 0.0f,
-                 0.1f, -0.2f, 0.1f, 1.0f, 0.0f, 0.0f,
-                -0.1f, -0.2f, 0.1f, 1.0f, 0.0f, 0.0f,
+                -0.1f, 0.5f, 0.1f, 2.0f, 2.0f, 2.0f,
+                 0.1f, 0.5f, 0.1f, 2.0f, 2.0f, 2.0f,
+                 0.1f, -0.2f, 0.1f, 2.0f, 2.0f, 2.0f,
+                -0.1f, -0.2f, 0.1f, 2.0f, 2.0f, 2.0f,
            }));
 
             parteVertical.AgregarPoligono("Trasera", new Poligono(
@@ -77,7 +77,7 @@ namespace WindowsFormsApp1.Objetos
 
             ////////////////////////////////////////////////////////////////
             
-            var parteHorizontal = new Parte(new Vector3(0f, 0f, 0f));
+            var parteHorizontal = new Parte(new Punto3D(0f, 0f, 0f));
 
             parteHorizontal.AgregarPoligono("Frontal", new Poligono(
             new float[]

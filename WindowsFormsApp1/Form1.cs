@@ -24,36 +24,33 @@ namespace WindowsFormsApp1
     {
 
         GLControl lienzoControl;
-        private Vector3 Posicion;
-        private Vector3 Objetivo;
-        private Vector3 Arriba;
-        private Matrix4 view;
+        Camara camara;
         private Matrix4 projection;
         Escenario escenario;
         Timer timer;
-
         Shader shader;
 
-        private float rotationAngle = 0.0f;
-
+        private float rotationAngle = 0.1f;
         private bool isDragging = false;
         private Point lastMousePosition;
-        private float speed = 1.5f;
 
         public Form1()
         {
             InitializeComponent();
+
             lienzoControl = new GLControl(new GraphicsMode(32, 24, 0, 4));
             timer = new Timer { Interval = 16 };
             timer.Tick += Timer_Tick;
             timer.Start();
             this.Focus();
 
-            this.KeyPreview = true; // Habilitar la vista previa de teclas en el formulario
-            lienzoControl.Focus(); // Establecer el foco en el control GLControl
+
+            this.KeyPreview = true;
+            lienzoControl.Focus(); 
 
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
-
+            lienzoControl.MouseDown += GlControlMouseDown;
+            lienzoControl.MouseUp += GlControlMouseUp;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -61,7 +58,7 @@ namespace WindowsFormsApp1
             this.lienzoControl = new GLControl
             {
                 BackColor = System.Drawing.Color.Red,
-                Location = new System.Drawing.Point(350, 37),
+                Location = new System.Drawing.Point(400, 37),
                 Name = "miglControl",
                 Size = new System.Drawing.Size(930, 600),
                 TabIndex = 2,
@@ -83,13 +80,14 @@ namespace WindowsFormsApp1
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
 
-            Posicion = new Vector3(0.0f, 0.0f, 3.0f);
-            Objetivo = new Vector3(0.0f, 0.0f, -1.0f);
-            Arriba = new Vector3(0.0f, 1.0f, 0.0f);
+            camara = new Camara(
+             new Vector3(0.0f, 0.0f, 3.0f),
+             new Vector3(0.0f, 0.0f, -1.0f),
+             new Vector3(0.0f, 1.0f, 0.0f)
+            );
 
             shader = new Shader("../../shaders/shader.vert", "../../shaders/shader.frag");           
 
-            view = Matrix4.LookAt(Posicion, Posicion + Objetivo, Arriba);
             projection = ConfigurarMatrizProyeccion();
             escenario = new Escenario();
             //Objeto t = T.CrearT();
@@ -103,7 +101,7 @@ namespace WindowsFormsApp1
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             
             shader.Use();
-            shader.SetMatrix4("view", view);
+            shader.SetMatrix4("view", camara.GetViewMatrix());
             shader.SetMatrix4("projection", projection);
 
             escenario.Dibujar(shader);
@@ -119,7 +117,7 @@ namespace WindowsFormsApp1
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            rotationAngle += 0.02f; 
+            rotationAngle += 0.01f; 
             lienzoControl.Invalidate(); // Forzar repaint
         }
 
@@ -156,55 +154,192 @@ namespace WindowsFormsApp1
         {
             if (isDragging)
             {
-                float sensitivity = 0.002f; // Sensibilidad del mouse
-                float deltaX = (e.X - lastMousePosition.X) * sensitivity;
-                float deltaY = (e.Y - lastMousePosition.Y) * sensitivity;
+                float deltaX = (e.X - lastMousePosition.X);
+                float deltaY = (e.Y - lastMousePosition.Y);
 
-                // Calcular la nueva dirección del objetivo
-                Vector3 right = Vector3.Normalize(Vector3.Cross(Objetivo, Arriba));
-                Objetivo = Vector3.Transform(Objetivo, Matrix3.CreateFromAxisAngle(Arriba, -deltaX));
-                Objetivo = Vector3.Transform(Objetivo, Matrix3.CreateFromAxisAngle(right, deltaY));
+                camara.ProcessMouseMovement(deltaX, deltaY);
 
-                // Actualizar la vista
-                view = Matrix4.LookAt(Posicion, Posicion + Objetivo, Arriba);
-
-                // Guardar la posición actual del mouse
                 lastMousePosition = e.Location;
-
-                // Redibujar el control
-                lienzoControl.Invalidate();
             }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.W:
-                    Posicion += Objetivo * speed;
-                    break;
-                case Keys.S:
-                    Posicion -= Objetivo * speed;
-                    break;
-                case Keys.A:
-                    Posicion -= Vector3.Cross(Objetivo, Arriba).Normalized() * speed;
-                    break;
-                case Keys.D:
-                    Posicion += Vector3.Cross(Objetivo, Arriba).Normalized() * speed;
-                    break;
-                case Keys.Q:
-                    Posicion += Arriba * speed;
-                    break;
-                case Keys.E:
-                    Posicion -= Arriba * speed;
-                    break;
-            }
-            view = Matrix4.LookAt(Posicion, Posicion + Objetivo, Arriba);
+            camara.ProcessKeyboard(e.KeyCode);
         }
+
 
         private void lienzoControl_Enter(object sender, EventArgs e)
         {
             lienzoControl.Focus();
+        }
+
+        
+
+        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+                saveFileDialog.Title = "Guardar Escenario";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = saveFileDialog.FileName;
+                    //Serializable.ConvertirDesdeEscenario(escenario);
+                    //Serializable.SerializarEscenario(rutaArchivo);                    
+                    Serializable.Serialize(escenario, rutaArchivo);
+                    MessageBox.Show("Escenario guardado exitosamente.");
+                }
+            }
+        }        
+
+        private void cargarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string filePath = null;
+
+            using (var openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "JSON files (*.json)|*.json";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+                }
+            }
+            if (filePath != null)
+            {
+                //Serializable serializable = Serializable.DeserializeEscenario(filePath);
+                escenario = Serializable.Deserialize(filePath);
+                CargarTreeViewConEscenario(escenario);
+                lienzoControl.Invalidate();                
+            }
+
+        }
+
+        private void CargarTreeViewConEscenario(Escenario escenario)
+        {
+            treeView1.Nodes.Clear();
+            TreeNode nodoEscenario = new TreeNode("Escenario") { Tag = escenario };
+            foreach (var kvpObjeto in escenario.objetos)
+            {
+                string nombreObjeto = kvpObjeto.Key;
+                Objeto objeto = kvpObjeto.Value;
+                objeto.Escenario = escenario;
+                TreeNode nodoObjeto = new TreeNode(nombreObjeto) { Tag = objeto };
+                foreach (var kvpParte in kvpObjeto.Value.partes)
+                {
+                    string nombreParte = kvpParte.Key;
+                    Parte parte = kvpParte.Value;
+                    parte.ObjetoPadre = objeto;
+                    TreeNode nodoParte = new TreeNode(nombreParte) { Tag = parte };
+                    nodoObjeto.Nodes.Add(nodoParte);
+                }
+                nodoEscenario.Nodes.Add(nodoObjeto);
+            }
+            treeView1.Nodes.Add(nodoEscenario);
+        }
+
+        private void treeView1_AfterSelect_1(object sender, TreeViewEventArgs e)
+        {
+            TreeNode nodoSeleccionado = e.Node;
+            if (nodoSeleccionado.Level == 0) // Si es un nodo del escenario
+            {
+                string nombreEscenario = nodoSeleccionado.Text;
+                Console.WriteLine($"Escenario seleccionado: {nombreEscenario}");
+
+            }
+            else if (nodoSeleccionado.Level == 1) // Si es un nodo de objeto
+            {
+                string nombreObjeto = nodoSeleccionado.Text;
+                Console.WriteLine($"Objeto seleccionado: {nombreObjeto}");
+            }
+            else if (nodoSeleccionado.Level == 2) // Si es un nodo de parte
+            {
+                string nombreObjeto = nodoSeleccionado.Parent.Text;
+                string nombreParte = nodoSeleccionado.Text;
+                Console.WriteLine($"Objeto seleccionado: {nombreObjeto}, Parte seleccionada: {nombreParte}");
+            }
+        }
+
+       
+        private void rotar_Click(object sender, EventArgs e)
+        {
+                       
+            TreeNode nodoSeleccionado = treeView1.SelectedNode;
+
+            if (nodoSeleccionado != null)
+            {
+                if (nodoSeleccionado.Tag is Escenario escenario)
+                {
+                    Console.WriteLine($"Escenario seleccionado: {escenario}");
+                    escenario.RotateX(rotationAngle);
+                }
+                else if (nodoSeleccionado.Tag is Objeto objeto)
+                {
+                    Console.WriteLine($"Escenario seleccionado: {objeto}");
+                    objeto.RotateX(objeto.Escenario.Centro,rotationAngle);
+                }
+                else if (nodoSeleccionado.Tag is Parte parte)
+                {
+                    Console.WriteLine($"Escenario seleccionado: {parte}");
+                    parte.RotateX(parte.ObjetoPadre.Centro,rotationAngle);
+                }
+                else
+                {
+                    Console.WriteLine("Tipo de etiqueta no soportado.");
+                }
+
+                lienzoControl.Invalidate();
+            }
+            else
+            {
+                Console.WriteLine("No se ha seleccionado ningún nodo en el TreeView.");
+            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TreeNode nodoSeleccionado = treeView1.SelectedNode;
+
+            if (nodoSeleccionado != null)
+            {
+                if (nodoSeleccionado.Tag is Escenario escenario)
+                {
+                    Console.WriteLine($"Escenario seleccionado: {escenario}");
+                    escenario.Trasladar( 0.0f, 0.5f, 0.0f);
+
+                }
+                else if (nodoSeleccionado.Tag is Objeto objeto)
+                {
+                    Console.WriteLine($"Escenario seleccionado: {objeto}");
+                    objeto.Trasladar(objeto.Escenario.Centro,0.5f, 0.0f, 0.0f);
+                }
+                else if (nodoSeleccionado.Tag is Parte parte)
+                {
+                    Console.WriteLine($"Escenario seleccionado: {parte}");
+                    parte.Trasladar(parte.ObjetoPadre.Centro,0.0f, 0.0f, 0.5f);
+                }
+                else
+                {
+                    Console.WriteLine("Tipo de etiqueta no soportado.");
+                }
+
+                lienzoControl.Invalidate();
+            }
+            else
+            {
+                Console.WriteLine("No se ha seleccionado ningún nodo en el TreeView.");
+            }
+        }
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void serializadorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void jsonToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,87 +357,6 @@ namespace WindowsFormsApp1
 
         }
 
-        
 
-        private void treeView1_AfterSelect_1(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
-        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
-                saveFileDialog.Title = "Guardar Escenario";
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string rutaArchivo = saveFileDialog.FileName;
-
-                    // Llamar al método estático SerializarEscenario
-                    var Serializable = new Serializable();
-
-                    Serializable.ConvertirDesdeEscenario(escenario);
-                    Serializable.SerializarEscenario(rutaArchivo);
-
-                    MessageBox.Show("Escenario guardado exitosamente.");
-                }
-            }
-        }
-
-        private void serializadorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cargarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string filePath = null;
-
-            using (var openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "JSON files (*.json)|*.json";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    filePath = openFileDialog.FileName;
-                }
-            }
-            if (filePath != null)
-            {
-                // Deserializar el escenario desde el archivo JSON
-                Serializable serializable = Serializable.DeserializeEscenario(filePath);
-                escenario = serializable.ConvertirAEscenario();
-
-                // Llamar al método para cargar el TreeView con la estructura del escenario
-                CargarTreeViewConEscenario(escenario);
-                lienzoControl.Invalidate();
-            }
-
-        }
-
-        private void CargarTreeViewConEscenario(Escenario escenario)
-        {
-            treeView1.Nodes.Clear();
-            // Agregar un nodo para el escenario
-            TreeNode nodoEscenario = new TreeNode("Escenario") { Tag = escenario };
-            foreach (var kvpObjeto in escenario.objetos)
-            {
-                string nombreObjeto = kvpObjeto.Key;
-                Objeto objeto = kvpObjeto.Value;
-
-                TreeNode nodoObjeto = new TreeNode(nombreObjeto) { Tag = objeto };
-                foreach (var kvpParte in kvpObjeto.Value.partes)
-                {
-                    string nombreParte = kvpParte.Key;
-                    Parte parte = kvpParte.Value;
-
-                    TreeNode nodoParte = new TreeNode(nombreParte) { Tag = parte };
-                    nodoObjeto.Nodes.Add(nodoParte);
-                }
-                nodoEscenario.Nodes.Add(nodoObjeto);
-            }
-            treeView1.Nodes.Add(nodoEscenario);
-        }
     }
 }
