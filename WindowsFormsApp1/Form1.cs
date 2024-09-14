@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
         Timer timer;
         Shader shader;
 
-        private float rotationAngle = 0.1f;
+        private float rotationAngle = 2.0f;
         private bool isDragging = false;
         private Point lastMousePosition;
 
@@ -264,7 +264,10 @@ namespace WindowsFormsApp1
        
         private void rotar_Click(object sender, EventArgs e)
         {
-                       
+            float rotationX = (float)x.Value;
+            float rotationY = (float)y.Value;
+            float rotationZ = (float)z.Value;
+
             TreeNode nodoSeleccionado = treeView1.SelectedNode;
 
             if (nodoSeleccionado != null)
@@ -272,17 +275,17 @@ namespace WindowsFormsApp1
                 if (nodoSeleccionado.Tag is Escenario escenario)
                 {
                     Console.WriteLine($"Escenario seleccionado: {escenario}");
-                    escenario.RotateX(rotationAngle);
+                    escenario.Rotate(rotationX, rotationY, rotationZ);
                 }
                 else if (nodoSeleccionado.Tag is Objeto objeto)
                 {
                     Console.WriteLine($"Escenario seleccionado: {objeto}");
-                    objeto.RotateX(objeto.Escenario.Centro,rotationAngle);
+                    objeto.Rotate(objeto.Escenario.Centro, rotationX, rotationY, rotationZ);
                 }
                 else if (nodoSeleccionado.Tag is Parte parte)
                 {
                     Console.WriteLine($"Escenario seleccionado: {parte}");
-                    parte.RotateX(parte.ObjetoPadre.Centro,rotationAngle);
+                    parte.Rotate(parte.ObjetoPadre.Centro, rotationX, rotationY, rotationZ);
                 }
                 else
                 {
@@ -300,6 +303,10 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            float translationX = (float)x.Value;
+            float translationY = (float)y.Value;
+            float translationZ = (float)z.Value;
+
             TreeNode nodoSeleccionado = treeView1.SelectedNode;
 
             if (nodoSeleccionado != null)
@@ -307,18 +314,18 @@ namespace WindowsFormsApp1
                 if (nodoSeleccionado.Tag is Escenario escenario)
                 {
                     Console.WriteLine($"Escenario seleccionado: {escenario}");
-                    escenario.Trasladar( 0.0f, 0.5f, 0.0f);
+                    escenario.Trasladar(translationX, translationY, translationZ);
 
                 }
                 else if (nodoSeleccionado.Tag is Objeto objeto)
                 {
                     Console.WriteLine($"Escenario seleccionado: {objeto}");
-                    objeto.Trasladar(objeto.Escenario.Centro,0.5f, 0.0f, 0.0f);
+                    objeto.Trasladar(objeto.Escenario.Centro, translationX, translationY, translationZ);
                 }
                 else if (nodoSeleccionado.Tag is Parte parte)
                 {
                     Console.WriteLine($"Escenario seleccionado: {parte}");
-                    parte.Trasladar(parte.ObjetoPadre.Centro,0.0f, 0.0f, 0.5f);
+                    parte.Trasladar(parte.ObjetoPadre.Centro, translationX, translationY, translationZ);
                 }
                 else
                 {
@@ -332,6 +339,55 @@ namespace WindowsFormsApp1
                 Console.WriteLine("No se ha seleccionado ningún nodo en el TreeView.");
             }
         }
+
+        private void escalar_Click(object sender, EventArgs e)
+        {
+            float scaleX = (float)x.Value;
+            float scaleY = (float)y.Value;
+            float scaleZ = (float)z.Value;
+
+            TreeNode nodoSeleccionado = treeView1.SelectedNode;
+
+            if (nodoSeleccionado != null)
+            {
+                if (nodoSeleccionado.Tag is Escenario escenario)
+                {
+                    Console.WriteLine($"Escenario seleccionado: {escenario}");
+                    escenario.Escalar(scaleX, scaleY, scaleZ);
+
+                }
+                else if (nodoSeleccionado.Tag is Objeto objeto)
+                {
+                    Console.WriteLine($"Escenario seleccionado: {objeto}");
+                    objeto.Escalar(scaleX, scaleY, scaleZ);
+                }
+                else if (nodoSeleccionado.Tag is Parte parte)
+                {
+                    Console.WriteLine($"Escenario seleccionado: {parte}");
+                    parte.Escalar(scaleX, scaleY, scaleZ);
+                }
+                else
+                {
+                    Console.WriteLine("Tipo de etiqueta no soportado.");
+                }
+
+                lienzoControl.Invalidate();
+            }
+            else
+            {
+                Console.WriteLine("No se ha seleccionado ningún nodo en el TreeView.");
+            }
+        }
+
+        private void reiniciar_Click(object sender, EventArgs e)
+        {
+            x.Value = 1.0m;
+            y.Value = 1.0m;
+            z.Value = 1.0m;
+
+            escenario.ReiniciarTransformaciones();
+        }
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -357,6 +413,11 @@ namespace WindowsFormsApp1
 
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        
     }
 }

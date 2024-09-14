@@ -34,11 +34,11 @@ namespace WindowsFormsApp1.Estructura
 
         }
 
-        public void RotateX(Punto3D escenarioCentro,float angle)
+        public void Rotate(Punto3D escenarioCentro, float x, float y, float z)
         {
             foreach (Parte parte in partes.Values)
             {
-                parte.RotateX(escenarioCentro + Centro, angle);
+                parte.Rotate(escenarioCentro + Centro, x, y, z);
             }
         }
 
@@ -47,6 +47,23 @@ namespace WindowsFormsApp1.Estructura
             foreach (Parte parte in partes.Values)
             {
                 parte.Trasladar(escenarioCentro + Centro,x,y,z);
+            }
+        }
+
+
+        public void Escalar(float x, float y, float z)
+        {
+            foreach (Parte parte in partes.Values)
+            {
+                parte.Escalar(x, y, z);
+            }
+        }
+
+        public void ReiniciarTransformaciones()
+        {
+            foreach (Parte parte in partes.Values)
+            {
+                parte.ReiniciarTransformaciones();
             }
         }
     }

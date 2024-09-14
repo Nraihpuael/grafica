@@ -15,10 +15,10 @@ namespace WindowsFormsApp1.Estructura
     {
         public float[] Vertices { get; private set; }
         [JsonIgnore]
-        private Matrix4 _trans = Matrix4.Identity;
-        private Matrix4 _rotationMatrix = Matrix4.Identity;
-        private Matrix4 _translationMatrix = Matrix4.Identity;
-        private Matrix4 _scaleMatrix = Matrix4.Identity;
+        private Matrix4 transformacionMX = Matrix4.Identity;
+        private Matrix4 rotacionMX = Matrix4.Identity;
+        private Matrix4 traslacionMX = Matrix4.Identity;
+        private Matrix4 escalaionMX = Matrix4.Identity;
         [JsonIgnore]
         int VertexBufferObject;
         [JsonIgnore]
@@ -63,46 +63,52 @@ namespace WindowsFormsApp1.Estructura
                 GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
                 GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(int), indices, BufferUsageHint.StaticDraw);
 
-                // Configurar los atributos de los vértices
                 GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
                 GL.EnableVertexAttribArray(0);
                 GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
                 GL.EnableVertexAttribArray(1);
             }
 
-            shader.SetMatrix4("model", _trans);
+            shader.SetMatrix4("model", transformacionMX);
 
-            // Dibujar el polígono
             GL.BindVertexArray(VertexArrayObject);
             GL.DrawElements(PrimitiveType.TriangleFan, indices.Length, DrawElementsType.UnsignedInt, 0);
-        }
+        }       
 
 
-
-        
-
-
-        public void RotateX(Punto3D center, float angle)
+        public void Rotate(Punto3D center, float x, float y, float z)
         {
 
-            float radiansX = MathHelper.DegreesToRadians(0.0f);
-            float radiansY = MathHelper.DegreesToRadians(angle);
-            float radiansZ = MathHelper.DegreesToRadians(0.0f);
+            float radiansX = MathHelper.DegreesToRadians(x);
+            float radiansY = MathHelper.DegreesToRadians(y);
+            float radiansZ = MathHelper.DegreesToRadians(z);
             Matrix4 trans1 = Matrix4.CreateTranslation(-center.X, -center.Y, -center.Z);
             Matrix4 rot = Matrix4.CreateRotationZ(radiansZ) * Matrix4.CreateRotationY(radiansY) * Matrix4.CreateRotationX(radiansX);
             Matrix4 trans2 = Matrix4.CreateTranslation(center.X, center.Y, center.Z);
 
-            _trans = trans1 * rot * trans2* _trans;
+            transformacionMX = trans1 * rot * trans2* transformacionMX;
         }
 
         public void Trasladar(Punto3D center, float x = 0, float y = 0, float z = 0)
         {
-            _translationMatrix = Matrix4.CreateTranslation(x + center.X, y + center.Y, z + center.Z);
-            _trans = _translationMatrix * _trans;
+            traslacionMX = Matrix4.CreateTranslation(x + center.X, y + center.Y, z + center.Z);
+            transformacionMX = traslacionMX * transformacionMX;
 
         }
 
+        public void Escalar(float x, float y, float z)
+        {
+            escalaionMX = Matrix4.CreateScale(x, y, z);
+            transformacionMX = escalaionMX * transformacionMX;
+        }
 
+        public void ReiniciarTransformaciones()
+        {
+            transformacionMX = Matrix4.Identity;
+            rotacionMX = Matrix4.Identity;
+            traslacionMX = Matrix4.Identity;
+            escalaionMX = Matrix4.Identity;
+        }
     }
 
 }

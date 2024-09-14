@@ -30,16 +30,27 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.trasladar = new System.Windows.Forms.Button();
             this.rotar = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.serializadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trasladar = new System.Windows.Forms.Button();
+            this.escalar = new System.Windows.Forms.Button();
+            this.x = new System.Windows.Forms.NumericUpDown();
+            this.y = new System.Windows.Forms.NumericUpDown();
+            this.z = new System.Windows.Forms.NumericUpDown();
+            this.EjeX = new System.Windows.Forms.Label();
+            this.EjeY = new System.Windows.Forms.Label();
+            this.EjeZ = new System.Windows.Forms.Label();
+            this.reiniciar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.x)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.y)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.z)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -56,6 +67,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.reiniciar);
+            this.groupBox1.Controls.Add(this.EjeZ);
+            this.groupBox1.Controls.Add(this.EjeY);
+            this.groupBox1.Controls.Add(this.EjeX);
+            this.groupBox1.Controls.Add(this.z);
+            this.groupBox1.Controls.Add(this.y);
+            this.groupBox1.Controls.Add(this.x);
+            this.groupBox1.Controls.Add(this.escalar);
             this.groupBox1.Controls.Add(this.trasladar);
             this.groupBox1.Controls.Add(this.rotar);
             this.groupBox1.Controls.Add(this.treeView1);
@@ -66,9 +85,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // trasladar
+            // 
+            this.trasladar.Location = new System.Drawing.Point(133, 213);
+            this.trasladar.Name = "trasladar";
+            this.trasladar.Size = new System.Drawing.Size(75, 23);
+            this.trasladar.TabIndex = 2;
+            this.trasladar.Text = "Trasladar";
+            this.trasladar.UseVisualStyleBackColor = true;
+            this.trasladar.Click += new System.EventHandler(this.button1_Click);
+            // 
             // rotar
             // 
-            this.rotar.Location = new System.Drawing.Point(20, 214);
+            this.rotar.Location = new System.Drawing.Point(23, 213);
             this.rotar.Name = "rotar";
             this.rotar.Size = new System.Drawing.Size(75, 23);
             this.rotar.TabIndex = 1;
@@ -120,15 +149,77 @@
             this.guardarToolStripMenuItem.Text = "Guardar";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
-            // trasladar
+            // escalar
             // 
-            this.trasladar.Location = new System.Drawing.Point(129, 213);
-            this.trasladar.Name = "trasladar";
-            this.trasladar.Size = new System.Drawing.Size(75, 23);
-            this.trasladar.TabIndex = 2;
-            this.trasladar.Text = "Trasladar";
-            this.trasladar.UseVisualStyleBackColor = true;
-            this.trasladar.Click += new System.EventHandler(this.button1_Click);
+            this.escalar.Location = new System.Drawing.Point(239, 213);
+            this.escalar.Name = "escalar";
+            this.escalar.Size = new System.Drawing.Size(75, 23);
+            this.escalar.TabIndex = 3;
+            this.escalar.Text = "Escalar";
+            this.escalar.UseVisualStyleBackColor = true;
+            this.escalar.Click += new System.EventHandler(this.escalar_Click);
+            // 
+            // x
+            // 
+            this.x.DecimalPlaces = 1;
+            this.x.Location = new System.Drawing.Point(35, 283);
+            this.x.Name = "x";
+            this.x.Size = new System.Drawing.Size(49, 20);
+            this.x.TabIndex = 4;
+            // 
+            // y
+            // 
+            this.y.DecimalPlaces = 1;
+            this.y.Location = new System.Drawing.Point(149, 283);
+            this.y.Name = "y";
+            this.y.Size = new System.Drawing.Size(49, 20);
+            this.y.TabIndex = 5;
+            // 
+            // z
+            // 
+            this.z.DecimalPlaces = 1;
+            this.z.Location = new System.Drawing.Point(250, 283);
+            this.z.Name = "z";
+            this.z.Size = new System.Drawing.Size(49, 20);
+            this.z.TabIndex = 6;
+            // 
+            // EjeX
+            // 
+            this.EjeX.AutoSize = true;
+            this.EjeX.Location = new System.Drawing.Point(41, 267);
+            this.EjeX.Name = "EjeX";
+            this.EjeX.Size = new System.Drawing.Size(29, 13);
+            this.EjeX.TabIndex = 7;
+            this.EjeX.Text = "EjeX";
+            this.EjeX.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // EjeY
+            // 
+            this.EjeY.AutoSize = true;
+            this.EjeY.Location = new System.Drawing.Point(157, 267);
+            this.EjeY.Name = "EjeY";
+            this.EjeY.Size = new System.Drawing.Size(29, 13);
+            this.EjeY.TabIndex = 8;
+            this.EjeY.Text = "EjeY";
+            // 
+            // EjeZ
+            // 
+            this.EjeZ.AutoSize = true;
+            this.EjeZ.Location = new System.Drawing.Point(256, 267);
+            this.EjeZ.Name = "EjeZ";
+            this.EjeZ.Size = new System.Drawing.Size(29, 13);
+            this.EjeZ.TabIndex = 9;
+            this.EjeZ.Text = "EjeZ";
+            // 
+            // reiniciar
+            // 
+            this.reiniciar.Location = new System.Drawing.Point(133, 384);
+            this.reiniciar.Name = "reiniciar";
+            this.reiniciar.Size = new System.Drawing.Size(75, 23);
+            this.reiniciar.TabIndex = 10;
+            this.reiniciar.Text = "Reiniciar";
+            this.reiniciar.UseVisualStyleBackColor = true;
+            this.reiniciar.Click += new System.EventHandler(this.reiniciar_Click);
             // 
             // Form1
             // 
@@ -143,8 +234,12 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.x)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.y)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.z)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -160,6 +255,14 @@
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.Button rotar;
         private System.Windows.Forms.Button trasladar;
+        private System.Windows.Forms.Button escalar;
+        private System.Windows.Forms.NumericUpDown z;
+        private System.Windows.Forms.NumericUpDown y;
+        private System.Windows.Forms.NumericUpDown x;
+        private System.Windows.Forms.Label EjeX;
+        private System.Windows.Forms.Label EjeZ;
+        private System.Windows.Forms.Label EjeY;
+        private System.Windows.Forms.Button reiniciar;
     }
 }
 

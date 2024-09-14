@@ -36,11 +36,11 @@ namespace WindowsFormsApp1.Estructura
             return this.objetos[key];
         }
 
-        public void RotateX(float angle)
+        public void Rotate(float x, float y, float z)
         {
             foreach (Objeto obj in objetos.Values)
             {
-                obj.RotateX(Centro, angle);
+                obj.Rotate(Centro, x, y, z);
             }
         }
 
@@ -52,5 +52,20 @@ namespace WindowsFormsApp1.Estructura
             }
         }
 
+        public void Escalar(float x, float y, float z)
+        {
+            foreach (Objeto obj in objetos.Values)
+            {
+                obj.Escalar(x, y, z);
+            }
+        }
+
+        public void ReiniciarTransformaciones()
+        {
+            foreach (Objeto obj in objetos.Values)
+            {
+                obj.ReiniciarTransformaciones();
+            }
+        }
     }
 }
