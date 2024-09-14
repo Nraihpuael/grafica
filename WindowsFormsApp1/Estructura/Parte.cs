@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace WindowsFormsApp1.Estructura
 {
     public class Parte
     {
         public Dictionary<string, Poligono> poligonos { get; set; }
-        public Vector3 Centro { get; private set; }
+        public Punto3D Centro { get; private set; }
+        public Objeto ObjetoPadre { get; set; }
 
-        public Parte(Vector3 centro)
+        public Parte(Punto3D centro)
         {
             poligonos = new Dictionary<string, Poligono>();
             this.Centro = centro;
@@ -23,13 +25,32 @@ namespace WindowsFormsApp1.Estructura
             poligonos.Add(nombre, poligono);
         }
 
-        public void Dibujar(Shader shader, Vector3 objetoCentro)
+        public void Dibujar(Shader shader, Punto3D objetoCentro)
+        {
+
+            foreach (Poligono poligono in poligonos.Values)
+            {
+                poligono.Dibujar(shader, objetoCentro + Centro);
+            }
+        }
+
+        public void RotateX(Punto3D objetoCentro, float angle)
         {
             foreach (Poligono poligono in poligonos.Values)
             {
-                poligono.Dibujar(shader, objetoCentro + Centro); 
+                poligono.RotateX(objetoCentro + Centro, angle);
             }
         }
-       
+
+        public void Trasladar(Punto3D objetoCentro, float x, float y, float z)
+        {
+
+            foreach (Poligono poligono in poligonos.Values)
+            {
+                poligono.Trasladar(objetoCentro + Centro,x,y,z);
+            }
+        }        
+
+
     }
 }

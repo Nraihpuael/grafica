@@ -15,7 +15,10 @@ namespace WindowsFormsApp1.Estructura
     {
         public float[] Vertices { get; private set; }
         [JsonIgnore]
-        public Matrix4 TransformMatrix { get; set; }
+        private Matrix4 _trans = Matrix4.Identity;
+        private Matrix4 _rotationMatrix = Matrix4.Identity;
+        private Matrix4 _translationMatrix = Matrix4.Identity;
+        private Matrix4 _scaleMatrix = Matrix4.Identity;
         [JsonIgnore]
         int VertexBufferObject;
         [JsonIgnore]
@@ -28,10 +31,9 @@ namespace WindowsFormsApp1.Estructura
         public Poligono(float[] vertices)
         {
             Vertices = vertices;
-            TransformMatrix = Matrix4.Identity;
         }
 
-        public void Dibujar(Shader shader, Vector3 parteCentro)
+        public void Dibujar(Shader shader, Punto3D center)
         {
 
             int[] indices = new int[] { 0, 1, 2, 2, 3, 0 };
@@ -40,9 +42,9 @@ namespace WindowsFormsApp1.Estructura
 
             for (int i = 0; i < Vertices.Length; i += 6)
             {
-                vertices2[i] = Vertices[i] + parteCentro.X;
-                vertices2[i + 1] = Vertices[i + 1] + parteCentro.Y;
-                vertices2[i + 2] = Vertices[i + 2] + parteCentro.Z;
+                vertices2[i] = Vertices[i] + center.X;
+                vertices2[i + 1] = Vertices[i + 1] + center.Y;
+                vertices2[i + 2] = Vertices[i + 2] + center.Z;
                 vertices2[i + 3] = Vertices[i + 3];
                 vertices2[i + 4] = Vertices[i + 4];
                 vertices2[i + 5] = Vertices[i + 5];
@@ -68,14 +70,39 @@ namespace WindowsFormsApp1.Estructura
                 GL.EnableVertexAttribArray(1);
             }
 
-            // Aplicar la transformación del modelo
-            Matrix4 model = Matrix4.CreateTranslation(parteCentro) * TransformMatrix;
-            shader.SetMatrix4("model", model);
+            shader.SetMatrix4("model", _trans);
 
             // Dibujar el polígono
             GL.BindVertexArray(VertexArrayObject);
-            GL.DrawElements(PrimitiveType.Polygon, indices.Length, DrawElementsType.UnsignedInt, 0);
+            GL.DrawElements(PrimitiveType.TriangleFan, indices.Length, DrawElementsType.UnsignedInt, 0);
         }
+
+
+
+        
+
+
+        public void RotateX(Punto3D center, float angle)
+        {
+
+            float radiansX = MathHelper.DegreesToRadians(0.0f);
+            float radiansY = MathHelper.DegreesToRadians(angle);
+            float radiansZ = MathHelper.DegreesToRadians(0.0f);
+            Matrix4 trans1 = Matrix4.CreateTranslation(-center.X, -center.Y, -center.Z);
+            Matrix4 rot = Matrix4.CreateRotationZ(radiansZ) * Matrix4.CreateRotationY(radiansY) * Matrix4.CreateRotationX(radiansX);
+            Matrix4 trans2 = Matrix4.CreateTranslation(center.X, center.Y, center.Z);
+
+            _trans = trans1 * rot * trans2* _trans;
+        }
+
+        public void Trasladar(Punto3D center, float x = 0, float y = 0, float z = 0)
+        {
+            _translationMatrix = Matrix4.CreateTranslation(x + center.X, y + center.Y, z + center.Z);
+            _trans = _translationMatrix * _trans;
+
+        }
+
+
     }
 
 }
