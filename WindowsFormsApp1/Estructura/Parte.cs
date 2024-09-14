@@ -34,11 +34,11 @@ namespace WindowsFormsApp1.Estructura
             }
         }
 
-        public void RotateX(Punto3D objetoCentro, float angle)
+        public void Rotate(Punto3D objetoCentro, float x, float y, float z)
         {
             foreach (Poligono poligono in poligonos.Values)
             {
-                poligono.RotateX(objetoCentro + Centro, angle);
+                poligono.Rotate(objetoCentro + Centro, x, y, z);
             }
         }
 
@@ -49,8 +49,24 @@ namespace WindowsFormsApp1.Estructura
             {
                 poligono.Trasladar(objetoCentro + Centro,x,y,z);
             }
-        }        
+        }
 
+        public void Escalar(float x, float y, float z)
+        {
+
+            foreach (Poligono poligono in poligonos.Values)
+            {
+                poligono.Escalar(x, y, z);
+            }
+        }
+
+        public void ReiniciarTransformaciones()
+        {
+            foreach (Poligono poligono in poligonos.Values)
+            {
+                poligono.ReiniciarTransformaciones();
+            }
+        }
 
     }
 }
