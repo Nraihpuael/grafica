@@ -48,7 +48,7 @@ namespace WindowsFormsApp1.Estructura
         {
             foreach (Objeto obj in objetos.Values)
             {
-                obj.Trasladar(Centro,x, y, z);
+                obj.Trasladar(x, y, z);
             }
         }
 

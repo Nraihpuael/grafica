@@ -38,16 +38,16 @@ namespace WindowsFormsApp1.Estructura
         {
             foreach (Poligono poligono in poligonos.Values)
             {
-                poligono.Rotate(objetoCentro + Centro, x, y, z);
+                poligono.Rotate(objetoCentro, x, y, z);
             }
         }
 
-        public void Trasladar(Punto3D objetoCentro, float x, float y, float z)
+        public void Trasladar(float x, float y, float z)
         {
 
             foreach (Poligono poligono in poligonos.Values)
             {
-                poligono.Trasladar(objetoCentro + Centro,x,y,z);
+                poligono.Trasladar(x,y,z);
             }
         }
 

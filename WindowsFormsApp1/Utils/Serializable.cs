@@ -12,12 +12,7 @@ namespace WindowsFormsApp1.Utils
 {
     class Serializable
     {
-        public Dictionary<string, Dictionary<string, object>> Objetos { get; set; }
-
-        public Serializable()
-        {
-            Objetos = new Dictionary<string, Dictionary<string, object>>();
-        }
+        
         public static void Serialize(Escenario escenario, string path)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
