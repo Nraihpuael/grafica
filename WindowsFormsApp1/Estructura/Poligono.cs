@@ -68,7 +68,9 @@ namespace WindowsFormsApp1.Estructura
                 GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
                 GL.EnableVertexAttribArray(1);
             }
-
+            Matrix4 trans1 = Matrix4.CreateTranslation(-center.X, -center.Y, -center.Z);
+            Matrix4 trans2 = Matrix4.CreateTranslation(center.X, center.Y, center.Z);
+            transformacionMX = trans1 *  trans2 * transformacionMX; 
             shader.SetMatrix4("model", transformacionMX);
 
             GL.BindVertexArray(VertexArrayObject);
@@ -82,6 +84,7 @@ namespace WindowsFormsApp1.Estructura
             float radiansX = MathHelper.DegreesToRadians(x);
             float radiansY = MathHelper.DegreesToRadians(y);
             float radiansZ = MathHelper.DegreesToRadians(z);
+
             Matrix4 trans1 = Matrix4.CreateTranslation(-center.X, -center.Y, -center.Z);
             Matrix4 rot = Matrix4.CreateRotationZ(radiansZ) * Matrix4.CreateRotationY(radiansY) * Matrix4.CreateRotationX(radiansX);
             Matrix4 trans2 = Matrix4.CreateTranslation(center.X, center.Y, center.Z);
@@ -89,9 +92,9 @@ namespace WindowsFormsApp1.Estructura
             transformacionMX = trans1 * rot * trans2* transformacionMX;
         }
 
-        public void Trasladar(Punto3D center, float x = 0, float y = 0, float z = 0)
+        public void Trasladar(float x = 0, float y = 0, float z = 0)
         {
-            traslacionMX = Matrix4.CreateTranslation(x + center.X, y + center.Y, z + center.Z);
+            traslacionMX = Matrix4.CreateTranslation(x, y, z);
             transformacionMX = traslacionMX * transformacionMX;
 
         }

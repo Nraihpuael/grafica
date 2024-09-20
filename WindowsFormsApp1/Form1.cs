@@ -30,7 +30,6 @@ namespace WindowsFormsApp1
         Timer timer;
         Shader shader;
 
-        private float rotationAngle = 2.0f;
         private bool isDragging = false;
         private Point lastMousePosition;
 
@@ -77,7 +76,7 @@ namespace WindowsFormsApp1
 
         private void GlControlLoad(object sender, EventArgs e)
         {
-            GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+            GL.ClearColor(0.0f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
 
             camara = new Camara(
@@ -90,9 +89,12 @@ namespace WindowsFormsApp1
 
             projection = ConfigurarMatrizProyeccion();
             escenario = new Escenario();
-            //Objeto t = T.CrearT();
-            //escenario.AgregarObjeto("T", t);
-           
+            /*
+            Objeto t = T.CrearT(new Punto3D(0.8f, 0.1f, 0.2f));
+            escenario.AgregarObjeto("T", t);
+            Objeto t2 = T.CrearT(new Punto3D(1.8f, 1.1f, 1.2f));
+            escenario.AgregarObjeto("T2", t2);
+            */
 
         }
 
@@ -117,7 +119,6 @@ namespace WindowsFormsApp1
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            rotationAngle += 0.01f; 
             lienzoControl.Invalidate(); // Forzar repaint
         }
 
@@ -186,8 +187,6 @@ namespace WindowsFormsApp1
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string rutaArchivo = saveFileDialog.FileName;
-                    //Serializable.ConvertirDesdeEscenario(escenario);
-                    //Serializable.SerializarEscenario(rutaArchivo);                    
                     Serializable.Serialize(escenario, rutaArchivo);
                     MessageBox.Show("Escenario guardado exitosamente.");
                 }
@@ -208,7 +207,6 @@ namespace WindowsFormsApp1
             }
             if (filePath != null)
             {
-                //Serializable serializable = Serializable.DeserializeEscenario(filePath);
                 escenario = Serializable.Deserialize(filePath);
                 CargarTreeViewConEscenario(escenario);
                 lienzoControl.Invalidate();                
@@ -242,22 +240,18 @@ namespace WindowsFormsApp1
         private void treeView1_AfterSelect_1(object sender, TreeViewEventArgs e)
         {
             TreeNode nodoSeleccionado = e.Node;
-            if (nodoSeleccionado.Level == 0) // Si es un nodo del escenario
+            if (nodoSeleccionado.Level == 0) 
             {
                 string nombreEscenario = nodoSeleccionado.Text;
-                Console.WriteLine($"Escenario seleccionado: {nombreEscenario}");
-
             }
-            else if (nodoSeleccionado.Level == 1) // Si es un nodo de objeto
+            else if (nodoSeleccionado.Level == 1) 
             {
                 string nombreObjeto = nodoSeleccionado.Text;
-                Console.WriteLine($"Objeto seleccionado: {nombreObjeto}");
             }
-            else if (nodoSeleccionado.Level == 2) // Si es un nodo de parte
+            else if (nodoSeleccionado.Level == 2) 
             {
                 string nombreObjeto = nodoSeleccionado.Parent.Text;
                 string nombreParte = nodoSeleccionado.Text;
-                Console.WriteLine($"Objeto seleccionado: {nombreObjeto}, Parte seleccionada: {nombreParte}");
             }
         }
 
@@ -274,24 +268,16 @@ namespace WindowsFormsApp1
             {
                 if (nodoSeleccionado.Tag is Escenario escenario)
                 {
-                    Console.WriteLine($"Escenario seleccionado: {escenario}");
                     escenario.Rotate(rotationX, rotationY, rotationZ);
                 }
                 else if (nodoSeleccionado.Tag is Objeto objeto)
                 {
-                    Console.WriteLine($"Escenario seleccionado: {objeto}");
                     objeto.Rotate(objeto.Escenario.Centro, rotationX, rotationY, rotationZ);
                 }
                 else if (nodoSeleccionado.Tag is Parte parte)
                 {
-                    Console.WriteLine($"Escenario seleccionado: {parte}");
-                    parte.Rotate(parte.ObjetoPadre.Centro, rotationX, rotationY, rotationZ);
-                }
-                else
-                {
-                    Console.WriteLine("Tipo de etiqueta no soportado.");
-                }
-
+                    parte.Rotate(parte.Centro + parte.ObjetoPadre.Centro, rotationX, rotationY, rotationZ);
+                }                
                 lienzoControl.Invalidate();
             }
             else
@@ -313,25 +299,17 @@ namespace WindowsFormsApp1
             {
                 if (nodoSeleccionado.Tag is Escenario escenario)
                 {
-                    Console.WriteLine($"Escenario seleccionado: {escenario}");
                     escenario.Trasladar(translationX, translationY, translationZ);
 
                 }
                 else if (nodoSeleccionado.Tag is Objeto objeto)
                 {
-                    Console.WriteLine($"Escenario seleccionado: {objeto}");
-                    objeto.Trasladar(objeto.Escenario.Centro, translationX, translationY, translationZ);
+                    objeto.Trasladar( translationX, translationY, translationZ);
                 }
                 else if (nodoSeleccionado.Tag is Parte parte)
                 {
-                    Console.WriteLine($"Escenario seleccionado: {parte}");
-                    parte.Trasladar(parte.ObjetoPadre.Centro, translationX, translationY, translationZ);
-                }
-                else
-                {
-                    Console.WriteLine("Tipo de etiqueta no soportado.");
-                }
-
+                    parte.Trasladar(translationX, translationY, translationZ);
+                }                
                 lienzoControl.Invalidate();
             }
             else
@@ -352,25 +330,18 @@ namespace WindowsFormsApp1
             {
                 if (nodoSeleccionado.Tag is Escenario escenario)
                 {
-                    Console.WriteLine($"Escenario seleccionado: {escenario}");
                     escenario.Escalar(scaleX, scaleY, scaleZ);
 
                 }
                 else if (nodoSeleccionado.Tag is Objeto objeto)
                 {
-                    Console.WriteLine($"Escenario seleccionado: {objeto}");
                     objeto.Escalar(scaleX, scaleY, scaleZ);
                 }
                 else if (nodoSeleccionado.Tag is Parte parte)
                 {
-                    Console.WriteLine($"Escenario seleccionado: {parte}");
                     parte.Escalar(scaleX, scaleY, scaleZ);
                 }
                 else
-                {
-                    Console.WriteLine("Tipo de etiqueta no soportado.");
-                }
-
                 lienzoControl.Invalidate();
             }
             else

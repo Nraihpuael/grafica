@@ -29,7 +29,7 @@ namespace WindowsFormsApp1.Estructura
         {
             foreach (Parte parte in partes.Values)
             {
-                parte.Dibujar(shader, this.Centro);
+                parte.Dibujar(shader, escenarioCentro +this.Centro);
             }
 
         }
@@ -42,11 +42,11 @@ namespace WindowsFormsApp1.Estructura
             }
         }
 
-        public void Trasladar(Punto3D escenarioCentro, float x, float y, float z)
+        public void Trasladar(float x, float y, float z)
         {   
             foreach (Parte parte in partes.Values)
             {
-                parte.Trasladar(escenarioCentro + Centro,x,y,z);
+                parte.Trasladar(x,y,z);
             }
         }
 
