@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsFormsApp1.Animacion;
 using WindowsFormsApp1.Estructura;
 
 namespace WindowsFormsApp1.Utils
@@ -45,6 +46,41 @@ namespace WindowsFormsApp1.Utils
             {
                 throw new FileNotFoundException($"El archivo en la ruta '{path}' no existe.");
             }
-        }          
+        }
+
+        
+        public static Libreto DeserializeA(string path)
+        {
+            if (File.Exists(path))
+            {
+                string json = File.ReadAllText(path);
+
+                JsonSerializerSettings settings = new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    Formatting = Formatting.Indented
+                };
+
+                Libreto libreto = JsonConvert.DeserializeObject<Libreto>(json, settings);
+
+                return libreto;
+            }
+            else
+            {
+                throw new FileNotFoundException($"El archivo en la ruta '{path}' no existe.");
+            }
+        }
+
+        public static void SerializeA(Libreto libreto, string path)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
+
+            string json = JsonConvert.SerializeObject(libreto, Formatting.Indented, settings);
+            File.WriteAllText(path, json);
+        }
     }
 }

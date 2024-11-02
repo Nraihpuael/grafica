@@ -33,10 +33,40 @@ namespace WindowsFormsApp1.Estructura
             Vertices = vertices;
         }
 
-        public void Dibujar(Shader shader, Punto3D center)
+        public void Dibujar(Shader shader, Punto3D center, string nombre)
         {
 
-            int[] indices = new int[] { 0, 1, 2, 2, 3, 0 };
+
+            int[] indices;
+
+            if (nombre == "Pelota")
+            {
+                int numSegmentos = 7;
+                int numAnillos = 7;
+                indices = new int[numAnillos * numSegmentos * 6];
+                int indexIndex = 0;
+
+                for (int i = 0; i < numAnillos; i++)
+                {
+                    for (int j = 0; j < numSegmentos; j++)
+                    {
+                        int primero = i * (numSegmentos + 1) + j;
+                        int segundo = primero + numSegmentos + 1;
+                        indices[indexIndex++] = primero;
+                        indices[indexIndex++] = segundo;
+                        indices[indexIndex++] = primero + 1;
+                        indices[indexIndex++] = segundo;
+                        indices[indexIndex++] = segundo + 1;
+                        indices[indexIndex++] = primero + 1;
+                    }
+                }
+            }
+            else
+            {
+                indices = new int[] { 0, 1, 2, 2, 3, 0 };
+
+                
+            }
 
             float[] vertices2 = new float[Vertices.Length];
 

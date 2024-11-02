@@ -30,7 +30,9 @@ namespace WindowsFormsApp1.Estructura
 
             foreach (Poligono poligono in poligonos.Values)
             {
-                poligono.Dibujar(shader, objetoCentro + Centro);
+                // Busca la clave (nombre) correspondiente al polígono actual
+                string nombrePoligono = poligonos.FirstOrDefault(entry => entry.Value == poligono).Key;
+                poligono.Dibujar(shader, objetoCentro + Centro, nombrePoligono);
             }
         }
 
