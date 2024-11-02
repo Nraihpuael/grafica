@@ -64,6 +64,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animacion\Accion.cs" />
+    <Compile Include="Animacion\Escena.cs" />
+    <Compile Include="Animacion\Libreto.cs" />
+    <Compile Include="Animacion\Transformacion.cs" />
     <Compile Include="Estructura\Escenario.cs" />
     <Compile Include="Estructura\Objeto.cs" />
     <Compile Include="Estructura\Parte.cs" />
@@ -75,6 +79,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Objetos\Pelota.cs" />
+    <Compile Include="Objetos\Robot.cs" />
     <Compile Include="Objetos\T.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

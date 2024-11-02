@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Animacion = new System.Windows.Forms.Button();
             this.reiniciar = new System.Windows.Forms.Button();
             this.EjeZ = new System.Windows.Forms.Label();
             this.EjeY = new System.Windows.Forms.Label();
@@ -45,6 +46,9 @@
             this.serializadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cargarAToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.guardarAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.z)).BeginInit();
@@ -67,6 +71,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Animacion);
             this.groupBox1.Controls.Add(this.reiniciar);
             this.groupBox1.Controls.Add(this.EjeZ);
             this.groupBox1.Controls.Add(this.EjeY);
@@ -84,6 +89,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // Animacion
+            // 
+            this.Animacion.Location = new System.Drawing.Point(133, 448);
+            this.Animacion.Name = "Animacion";
+            this.Animacion.Size = new System.Drawing.Size(75, 23);
+            this.Animacion.TabIndex = 11;
+            this.Animacion.Text = "Animacion";
+            this.Animacion.UseVisualStyleBackColor = true;
+            this.Animacion.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // reiniciar
             // 
@@ -204,7 +219,8 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.serializadorToolStripMenuItem});
+            this.serializadorToolStripMenuItem,
+            this.aToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1359, 24);
@@ -235,6 +251,29 @@
             this.guardarToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.guardarToolStripMenuItem.Text = "Guardar";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
+            // 
+            // aToolStripMenuItem
+            // 
+            this.aToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cargarAToolStripMenuItem1,
+            this.guardarAToolStripMenuItem});
+            this.aToolStripMenuItem.Name = "aToolStripMenuItem";
+            this.aToolStripMenuItem.Size = new System.Drawing.Size(27, 20);
+            this.aToolStripMenuItem.Text = "A";
+            // 
+            // cargarAToolStripMenuItem1
+            // 
+            this.cargarAToolStripMenuItem1.Name = "cargarAToolStripMenuItem1";
+            this.cargarAToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.cargarAToolStripMenuItem1.Text = "Cargar";
+            this.cargarAToolStripMenuItem1.Click += new System.EventHandler(this.cargarAToolStripMenuItem1_Click);
+            // 
+            // guardarAToolStripMenuItem
+            // 
+            this.guardarAToolStripMenuItem.Name = "guardarAToolStripMenuItem";
+            this.guardarAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.guardarAToolStripMenuItem.Text = "GuardarA";
+            this.guardarAToolStripMenuItem.Click += new System.EventHandler(this.guardarAToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -278,6 +317,10 @@
         private System.Windows.Forms.Label EjeZ;
         private System.Windows.Forms.Label EjeY;
         private System.Windows.Forms.Button reiniciar;
+        private System.Windows.Forms.Button Animacion;
+        private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cargarAToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem guardarAToolStripMenuItem;
     }
 }
 

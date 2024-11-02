@@ -1,0 +1,830 @@
+{
+  "Escenas": [
+    {
+      "Acciones": [
+        {
+          "Nombre": "Robot",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 90.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 500
+            }
+          ],
+          "Tiempo": 500,
+          "TiempoInicio": 0
+        },
+        {
+          "Nombre": "PiernaDerechaSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": -15.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": -0.03,
+                "Z": 0.2
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 1000
+        },
+        {
+          "Nombre": "PiernaDerechaInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.1,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.3
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": -12.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": -0.13,
+                "Z": 0.05
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 1000
+        },
+        {
+          "Nombre": "PiernaDerechaInferior",
+          "Transformaciones": [],
+          "Tiempo": 5000,
+          "TiempoInicio": 6000
+        },
+        {
+          "Nombre": "PiernaDerechaSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 15.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": -0.02,
+                "Z": 0.3
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "PiernaDerechaInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 10.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": -0.02,
+                "Z": 0.15
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "Torso",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "Cabeza",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "BrazoDerechoSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "BrazoIzquierdoSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "BrazoIzquierdoInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "BrazoDerechoInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "PiernaIzquierdaSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 20.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.1,
+                "Z": 0.45
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "PiernaIzquierdaInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 20.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.1,
+                "Z": 0.2
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 11000
+        },
+        {
+          "Nombre": "PiernaIzquierdaSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": -40.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": -0.03,
+                "Z": 0.3
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 16000
+        },
+        {
+          "Nombre": "PiernaIzquierdaInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": -40.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": -0.03,
+                "Z": 0.75
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 16000
+        },
+        {
+          "Nombre": "Torso",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "Cabeza",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "BrazoDerechoSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "BrazoIzquierdoSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "BrazoIzquierdoInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "BrazoDerechoInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.5
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "PiernaIzquierdaSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 20.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": -0.05,
+                "Z": 0.4
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -0.1
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "PiernaIzquierdaInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 20.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": -0.05,
+                "Z": 0.2
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -0.1
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "PiernaDerechaSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 3.5,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.05,
+                "Z": 0.6
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.12,
+                "Z": -0.22
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "PiernaDerechaInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 4.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.05,
+                "Z": 0.6
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.05,
+                "Z": -0.15
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 21000
+        },
+        {
+          "Nombre": "PiernaDerechaSuperior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": -20.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.1
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 36000
+        },
+        {
+          "Nombre": "PiernaDerechaInferior",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": -20.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.3
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 5000
+            }
+          ],
+          "Tiempo": 5000,
+          "TiempoInicio": 36000
+        },
+        {
+          "Nombre": "Robot",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 3.5,
+                "Z": 3.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 10000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": -0.3,
+                "Z": 0.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 10000
+            }
+          ],
+          "Tiempo": 10000,
+          "TiempoInicio": 26000
+        },
+        {
+          "Nombre": "Pelota",
+          "Transformaciones": [
+            {
+              "TipoTransformacion": "Rotacion",
+              "Valor": {
+                "X": 90.0,
+                "Y": 90.0,
+                "Z": 90.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 10000
+            },
+            {
+              "TipoTransformacion": "Traslacion",
+              "Valor": {
+                "X": 0.0,
+                "Y": 5.0,
+                "Z": 5.0
+              },
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "Duracion": 10000
+            }
+          ],
+          "Tiempo": 10000,
+          "TiempoInicio": 41000
+        }
+      ],
+      "TiempoTotal": 155500.0
+    }
+  ]
+}
