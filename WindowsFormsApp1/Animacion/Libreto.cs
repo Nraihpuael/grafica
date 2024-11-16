@@ -27,11 +27,13 @@ namespace WindowsFormsApp1.Animacion
         public void AgregarEscena(Escena escena)
         {
             Escenas.Add(escena);
-            tiempoTotal += escena.TiempoTotal; // Sumar el tiempo total de cada escena
+            tiempoTotal += escena.TiempoTotal; 
         }
 
         public void EjecutarEscena(Escenario escenario, ref double time)
         {
+        
+
             if (escenaActual < Escenas.Count)
             {
                 Escena escena = Escenas[escenaActual];
@@ -40,16 +42,16 @@ namespace WindowsFormsApp1.Animacion
                 if (escena.TiempoTotal <= tiempoAcumulado)
                 {
                     escenaActual++;
-                    tiempoAcumulado = 0;
                 }
                 else
                 {
-                   
                     tiempoAcumulado += time;
+                    Console.WriteLine(tiempoAcumulado);
                 }
             }
             else
             {
+                Console.WriteLine("hola");
                 escenaActual = 0;
                 tiempoAcumulado = 0;
             }
@@ -62,7 +64,7 @@ namespace WindowsFormsApp1.Animacion
             tiempoAcumulado = 0;
             foreach (var escena in Escenas)
             {
-                escena.Reiniciar(); // Ejecutar la acción
+                escena.Reiniciar(); 
             }
         }
     }

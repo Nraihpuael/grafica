@@ -21,14 +21,15 @@ namespace WindowsFormsApp1.Animacion
         public void AgregarAccion(Accion accion)
         {
             Acciones.Add(accion);
-            TiempoTotal += accion.Tiempo; // Sumar tiempo de cada acción
+            TiempoTotal = accion.Tiempo + accion.TiempoInicio; 
         }
 
         public void Ejecutar(Escenario escenario, ref double time)
         {
-            foreach (var accion in Acciones)
+            var accionesActivas = Acciones.Where(a => a.Estado != EstadoAccion.Completada).ToList();
+            foreach (var accion in accionesActivas)
             {
-                accion.Ejecutar(escenario, ref time); // Ejecutar la acción
+                accion.Ejecutar(escenario, ref time);
             }
         }
 
@@ -36,7 +37,7 @@ namespace WindowsFormsApp1.Animacion
         {
             foreach (var accion in Acciones)
             {
-                accion.Reiniciar(); // Ejecutar la acción
+                accion.Reiniciar(); 
             }
         }
 

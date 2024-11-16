@@ -33,6 +33,7 @@ namespace WindowsFormsApp1
         System.Windows.Forms.Timer timer;
         Shader shader;
 
+        private ManualResetEvent pausaEvento = new ManualResetEvent(true);
         private bool isDragging = false;
         private Point lastMousePosition;
         private bool isAnimating = false;
@@ -102,246 +103,321 @@ namespace WindowsFormsApp1
                 Objeto robot = Robot.CrearRobot(new Punto3D(-4.0f, 0.1f, 0.2f));
                 escenario.AgregarObjeto("Robot", robot);
 
-                Objeto pelota = Pelota.CrearPelota(new Punto3D(0.8f, 2.6f, 0.0f));
-                escenario.AgregarObjeto("Pelota", pelota);
+                Objeto pelota2 = Pelota.CrearPelota(new Punto3D(0.8f, 2.6f, 0.0f));
+                escenario.AgregarObjeto("Pelota", pelota2);
             */
 
             /*
-                        Accion girarRobot = new Accion("Robot", 500, 0);
-                        Transformacion girarRobot1 = new Transformacion("Rotacion", new Punto3D(0.0f, 90.0f, 0), 500); // Mover hacia adelante
-                        girarRobot.AgregarTransformacion(girarRobot1);
+            Accion girarRobot = new Accion("Robot", 500, 0);
+            Transformacion girarRobot1 = new Transformacion("Rotacion", new Punto3D(0.0f, 90.0f, 0), 500); // Mover hacia adelante
+            girarRobot.AgregarTransformacion(girarRobot1);
 
 
-                        //// PASO 1///
-                        Accion accionarPiernaDerechaSuperior = new Accion("PiernaDerechaSuperior", 5000, 1000);
-                        Transformacion rotarPiernaDerechaSuperior = new Transformacion("Rotacion", new Punto3D(-15.0f, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaSuperior = new Transformacion("Traslacion", new Punto3D(0, -0.03f, 0.2f), 5000); // Mover hacia adelante
-                        accionarPiernaDerechaSuperior.AgregarTransformacion(rotarPiernaDerechaSuperior);
-                        accionarPiernaDerechaSuperior.AgregarTransformacion(moverPiernaDerechaSuperior);
+            //// PASO 1///
+            Accion accionarPiernaDerechaSuperior = new Accion("PiernaDerechaSuperior", 5000, 1000);
+            Transformacion rotarPiernaDerechaSuperior = new Transformacion("Rotacion", new Punto3D(-15.0f, 0, 0), 5000); 
+            Transformacion moverPiernaDerechaSuperior = new Transformacion("Traslacion", new Punto3D(0, -0.03f, 0.2f), 5000); 
+            accionarPiernaDerechaSuperior.AgregarTransformacion(rotarPiernaDerechaSuperior);
+            accionarPiernaDerechaSuperior.AgregarTransformacion(moverPiernaDerechaSuperior);
+
+            Accion accionarPiernaDerechaInferior = new Accion("PiernaDerechaInferior", 5000, 1000);
+            Transformacion moverPiernaDerechaInferiory = new Transformacion("Traslacion", new Punto3D(0, 0.1f, 0), 5000);
+            Transformacion moverPiernaDerechaInferiorz = new Transformacion("Traslacion", new Punto3D(0, 0, 0.3f), 5000);
+            accionarPiernaDerechaInferior.AgregarTransformacion(moverPiernaDerechaInferiory);
+            accionarPiernaDerechaInferior.AgregarTransformacion(moverPiernaDerechaInferiorz);           
+
+            Accion BrazoIzquierdoSuperior0 = new Accion("BrazoIzquierdoSuperior", 8000, 1000);
+            Transformacion rotarBrazoIzquierdoSuperior0 = new Transformacion("Rotacion", new Punto3D(-45.0f, 0, 0), 8000);
+            Transformacion moverBrazoIzquierdoSuperior0 = new Transformacion("Traslacion", new Punto3D(0, -0.03f, 0.1f), 8000);
+            BrazoIzquierdoSuperior0.AgregarTransformacion(rotarBrazoIzquierdoSuperior0);
+            BrazoIzquierdoSuperior0.AgregarTransformacion(moverBrazoIzquierdoSuperior0);
 
 
-                        Accion accionarPiernaDerechaInferior = new Accion("PiernaDerechaInferior", 5000, 1000);
-                        Transformacion moverPiernaDerechaInferiory = new Transformacion("Traslacion", new Punto3D(0, 0.1f, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaInferiorz = new Transformacion("Traslacion", new Punto3D(0, 0, 0.3f), 5000); // Mover hacia adelante
-                        accionarPiernaDerechaInferior.AgregarTransformacion(moverPiernaDerechaInferiory);
-                        accionarPiernaDerechaInferior.AgregarTransformacion(moverPiernaDerechaInferiorz);
+            Accion BrazoIzquierdoInferior0 = new Accion("BrazoIzquierdoInferior", 8000, 1000);
+            Transformacion rotarBrazoIzquierdoInferior0 = new Transformacion("Rotacion", new Punto3D(-60.0f, 0, 0), 8000);
+            Transformacion moverBrazoIzquierdoInferior0 = new Transformacion("Traslacion", new Punto3D(0, -0.05f, 0.65f), 8000);
+            BrazoIzquierdoInferior0.AgregarTransformacion(rotarBrazoIzquierdoInferior0);
+            BrazoIzquierdoInferior0.AgregarTransformacion(moverBrazoIzquierdoInferior0);
 
-                        Accion accionarPiernaDerechaInferior2 = new Accion("PiernaDerechaInferior", 5000, 6000);
-                        Transformacion rotarPiernaDerechaInferior = new Transformacion("Rotacion", new Punto3D(-12.0f, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaInferior2 = new Transformacion("Traslacion", new Punto3D(0, -0.13f, 0.05f), 5000); // Mover hacia adelante
-                        accionarPiernaDerechaInferior.AgregarTransformacion(rotarPiernaDerechaInferior);
-                        accionarPiernaDerechaInferior.AgregarTransformacion(moverPiernaDerechaInferior2);
-
-
-                        Accion accionarPiernaDerechaSuperior2 = new Accion("PiernaDerechaSuperior", 5000, 11000);
-                        Transformacion rotarPiernaDerechaSuperior2 = new Transformacion("Rotacion", new Punto3D(15, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaSuperior2 = new Transformacion("Traslacion", new Punto3D(0, -0.02f, 0.3f), 5000); // Mover hacia adelante
-                        accionarPiernaDerechaSuperior2.AgregarTransformacion(rotarPiernaDerechaSuperior2);
-                        accionarPiernaDerechaSuperior2.AgregarTransformacion(moverPiernaDerechaSuperior2);
-
-                        Accion accionarPiernaDerechaInferior3 = new Accion("PiernaDerechaInferior", 5000, 11000);
-                        Transformacion rotarPiernaDerechaInferior3 = new Transformacion("Rotacion", new Punto3D(10, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaInferior3 = new Transformacion("Traslacion", new Punto3D(0,-0.02f, 0.15f), 5000); // Mover hacia adelante
-                        accionarPiernaDerechaInferior3.AgregarTransformacion(rotarPiernaDerechaInferior3);
-                        accionarPiernaDerechaInferior3.AgregarTransformacion(moverPiernaDerechaInferior3);
-
-                        Accion torso = new Accion("Torso", 5000, 11000);
-                        Transformacion movertorso = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        torso.AgregarTransformacion(movertorso);
-
-                        Accion cabeza = new Accion("Cabeza", 5000, 11000);
-                        Transformacion movercabeza = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        cabeza.AgregarTransformacion(movercabeza);
-
-                        Accion BrazoIzquierdoSuperior = new Accion("BrazoIzquierdoSuperior", 5000, 11000);
-                        Transformacion moverBrazoIzquierdoSuperior = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        BrazoIzquierdoSuperior.AgregarTransformacion(moverBrazoIzquierdoSuperior);
+            Accion BrazoDerechoSuperior0 = new Accion("BrazoDerechoSuperior", 8000, 1000);
+            Transformacion rotarBrazoDerechoSuperior0 = new Transformacion("Rotacion", new Punto3D(30.0f, 0, 0), 8000);
+            Transformacion moverBrazoDerechoSuperior0 = new Transformacion("Traslacion", new Punto3D(0, -0.03f, -0.05f), 8000);
+            BrazoDerechoSuperior0.AgregarTransformacion(moverBrazoDerechoSuperior0);
+            BrazoDerechoSuperior0.AgregarTransformacion(rotarBrazoDerechoSuperior0);
 
 
-                        Accion BrazoDerechoSuperior = new Accion("BrazoDerechoSuperior", 5000, 11000);
-                        Transformacion moverBrazoDerechoSuperior = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        BrazoDerechoSuperior.AgregarTransformacion(moverBrazoDerechoSuperior);
+            Accion BrazoDerechoInferior0 = new Accion("BrazoDerechoInferior", 8000, 1000);
+            Transformacion rotarBrazoDerechoInferior0 = new Transformacion("Rotacion", new Punto3D(30.0f, 0, 0), 8000);
+            Transformacion moverBrazoDerechoInferior0 = new Transformacion("Traslacion", new Punto3D(0, -0.03f, -0.35f), 8000);
+            BrazoDerechoInferior0.AgregarTransformacion(moverBrazoDerechoInferior0);
+            BrazoDerechoInferior0.AgregarTransformacion(rotarBrazoDerechoInferior0);
 
-                        Accion BrazoIzquierdoInferior = new Accion("BrazoIzquierdoInferior", 5000, 11000);
-                        Transformacion moverBrazoIzquierdoInferior = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        BrazoIzquierdoInferior.AgregarTransformacion(moverBrazoIzquierdoInferior);
+            
+            Accion accionarPiernaDerechaInferior2 = new Accion("PiernaDerechaInferior", 5000, 6000);
+            Transformacion rotarPiernaDerechaInferior = new Transformacion("Rotacion", new Punto3D(-12.0f, 0, 0), 5000);
+            Transformacion moverPiernaDerechaInferior2 = new Transformacion("Traslacion", new Punto3D(0, -0.13f, 0.05f), 5000);
+            accionarPiernaDerechaInferior.AgregarTransformacion(rotarPiernaDerechaInferior);
+            accionarPiernaDerechaInferior.AgregarTransformacion(moverPiernaDerechaInferior2);
+            
+            Accion accionarPiernaDerechaSuperior2 = new Accion("PiernaDerechaSuperior", 5000, 11000);
+            Transformacion rotarPiernaDerechaSuperior2 = new Transformacion("Rotacion", new Punto3D(15, 0, 0), 5000); 
+            Transformacion moverPiernaDerechaSuperior2 = new Transformacion("Traslacion", new Punto3D(0, -0.02f, 0.3f), 5000); 
+            accionarPiernaDerechaSuperior2.AgregarTransformacion(rotarPiernaDerechaSuperior2);
+            accionarPiernaDerechaSuperior2.AgregarTransformacion(moverPiernaDerechaSuperior2);
 
-                        Accion BrazoDerechoInferior = new Accion("BrazoDerechoInferior", 5000, 11000);
-                        Transformacion moverBrazoDerechoInferior = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        BrazoDerechoInferior.AgregarTransformacion(moverBrazoDerechoInferior);
+            Accion accionarPiernaDerechaInferior3 = new Accion("PiernaDerechaInferior", 5000, 11000);
+            Transformacion rotarPiernaDerechaInferior3 = new Transformacion("Rotacion", new Punto3D(10, 0, 0), 5000); 
+            Transformacion moverPiernaDerechaInferior3 = new Transformacion("Traslacion", new Punto3D(0, -0.02f, 0.15f), 5000); 
+            accionarPiernaDerechaInferior3.AgregarTransformacion(rotarPiernaDerechaInferior3);
+            accionarPiernaDerechaInferior3.AgregarTransformacion(moverPiernaDerechaInferior3);
 
+            Accion torso = new Accion("Torso", 5000, 11000);
+            Transformacion movertorso = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); 
+            torso.AgregarTransformacion(movertorso);
 
-                        Accion PiernaIzquierdaSuperior = new Accion("PiernaIzquierdaSuperior", 5000, 11000);
-                        Transformacion rotarPiernaIzquierdaSuperior = new Transformacion("Rotacion", new Punto3D(20, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaIzquierdaSuperior = new Transformacion("Traslacion", new Punto3D(0, 0.1f, 0.45f), 5000); // Mover hacia adelante
+            Accion cabeza = new Accion("Cabeza", 5000, 11000);
+            Transformacion movercabeza = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000);
+            cabeza.AgregarTransformacion(movercabeza);
 
-                        PiernaIzquierdaSuperior.AgregarTransformacion(rotarPiernaIzquierdaSuperior);
-                        PiernaIzquierdaSuperior.AgregarTransformacion(moverPiernaIzquierdaSuperior);
-
-
-                        Accion PiernaIzquierdaInferior = new Accion("PiernaIzquierdaInferior", 5000, 11000);
-                        Transformacion rotarPiernaIzquierdaInferior = new Transformacion("Rotacion", new Punto3D(20, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaIzquierdaInferior = new Transformacion("Traslacion", new Punto3D(0, 0.1f, 0.2f), 5000); // Mover hacia adelante
-
-                        PiernaIzquierdaInferior.AgregarTransformacion(rotarPiernaIzquierdaInferior);
-                        PiernaIzquierdaInferior.AgregarTransformacion(moverPiernaIzquierdaInferior);
-
-
-                        //// PASO 2///
-                        Accion PiernaIzquierdaSuperior2 = new Accion("PiernaIzquierdaSuperior", 5000, 16000);
-                        Transformacion rotarPiernaIzquierdaSuperior2 = new Transformacion("Rotacion", new Punto3D(-40, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaIzquierdaSuperior2 = new Transformacion("Traslacion", new Punto3D(0, -0.03f, 0.3f), 5000); // Mover hacia adelante
-
-                        PiernaIzquierdaSuperior2.AgregarTransformacion(rotarPiernaIzquierdaSuperior2);
-                        PiernaIzquierdaSuperior2.AgregarTransformacion(moverPiernaIzquierdaSuperior2);
-
-                        Accion PiernaIzquierdaInferior2 = new Accion("PiernaIzquierdaInferior", 5000, 16000);
-                        Transformacion rotarPiernaIzquierdaInferior2 = new Transformacion("Rotacion", new Punto3D(-40, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaIzquierdaInferior2 = new Transformacion("Traslacion", new Punto3D(0, -0.03f, 0.75f), 5000); // Mover hacia adelante
-
-                        PiernaIzquierdaInferior2.AgregarTransformacion(rotarPiernaIzquierdaInferior2);
-                        PiernaIzquierdaInferior2.AgregarTransformacion(moverPiernaIzquierdaInferior2);
-
-                        Accion torso2 = new Accion("Torso", 5000, 21000);
-                        Transformacion movertorso2 = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        torso2.AgregarTransformacion(movertorso2);
-
-                        Accion cabeza2 = new Accion("Cabeza", 5000, 21000);
-                        Transformacion movercabeza2 = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        cabeza2.AgregarTransformacion(movercabeza2);
-
-                        Accion BrazoIzquierdoSuperior2 = new Accion("BrazoIzquierdoSuperior", 5000, 21000);
-                        Transformacion moverBrazoIzquierdoSuperior2 = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        BrazoIzquierdoSuperior2.AgregarTransformacion(moverBrazoIzquierdoSuperior2);
+            Accion BrazoIzquierdoSuperior = new Accion("BrazoIzquierdoSuperior", 5000, 11000);
+            Transformacion rotarBrazoIzquierdoSuperior = new Transformacion("Rotacion", new Punto3D(25.0f, 0, 0), 5000);
+            Transformacion moverBrazoIzquierdoSuperior = new Transformacion("Traslacion", new Punto3D(0, -0.28f, 0.35f), 5000);
+            BrazoIzquierdoSuperior.AgregarTransformacion(moverBrazoIzquierdoSuperior);
+            BrazoIzquierdoSuperior.AgregarTransformacion(rotarBrazoIzquierdoSuperior);
 
 
-                        Accion BrazoDerechoSuperior2 = new Accion("BrazoDerechoSuperior", 5000, 21000);
-                        Transformacion moverBrazoDerechoSuperior2 = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        BrazoDerechoSuperior2.AgregarTransformacion(moverBrazoDerechoSuperior2);
-
-                        Accion BrazoIzquierdoInferior2 = new Accion("BrazoIzquierdoInferior", 5000, 21000);
-                        Transformacion moverBrazoIzquierdoInferior2 = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        BrazoIzquierdoInferior2.AgregarTransformacion(moverBrazoIzquierdoInferior2);
-
-                        Accion BrazoDerechoInferior2 = new Accion("BrazoDerechoInferior", 5000, 21000);
-                        Transformacion moverBrazoDerechoInferior2 = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 5000); // Mover hacia adelante
-                        BrazoDerechoInferior2.AgregarTransformacion(moverBrazoDerechoInferior2);
-
-                        Accion PiernaIzquierdaSuperior3 = new Accion("PiernaIzquierdaSuperior", 5000, 21000);
-                        Transformacion rotarPiernaIzquierdaSuperior3 = new Transformacion("Rotacion", new Punto3D(20, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaIzquierdaSuperior3 = new Transformacion("Traslacion", new Punto3D(0, -0.05f, 0.40f), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaIzquierdaSuperior33 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, -0.1f), 5000); // Mover hacia adelante
-
-                        PiernaIzquierdaSuperior3.AgregarTransformacion(rotarPiernaIzquierdaSuperior3);
-                        PiernaIzquierdaSuperior3.AgregarTransformacion(moverPiernaIzquierdaSuperior3);
-                        PiernaIzquierdaSuperior3.AgregarTransformacion(moverPiernaIzquierdaSuperior33);
+            Accion BrazoIzquierdoInferior = new Accion("BrazoIzquierdoInferior", 5000, 11000);
+            Transformacion rotarBrazoIzquierdoInferior = new Transformacion("Rotacion", new Punto3D(40.0f, 0, 0), 5000);
+            Transformacion moverBrazoIzquierdoInferior = new Transformacion("Traslacion", new Punto3D(0, -0.28f, -0.03f), 5000);
+            BrazoIzquierdoInferior.AgregarTransformacion(moverBrazoIzquierdoInferior);
+            BrazoIzquierdoInferior.AgregarTransformacion(rotarBrazoIzquierdoInferior);
 
 
-                        Accion PiernaIzquierdaInferior3 = new Accion("PiernaIzquierdaInferior", 5000, 21000);
-                        Transformacion rotarPiernaIzquierdaInferior3 = new Transformacion("Rotacion", new Punto3D(20, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaIzquierdaInferior3 = new Transformacion("Traslacion", new Punto3D(0, -0.05f, 0.2f), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaIzquierdaInferior33 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, -0.1f), 5000); // Mover hacia adelante
+            Accion BrazoDerechoSuperior = new Accion("BrazoDerechoSuperior", 5000, 11000);
+            Transformacion rotarBrazoDerechoSuperior = new Transformacion("Rotacion", new Punto3D(-10.0f, 0, 0), 5000);            
+            Transformacion moverBrazoDerechoSuperior = new Transformacion("Traslacion", new Punto3D(0, 0.25f, 0.5f), 5000); 
+            BrazoDerechoSuperior.AgregarTransformacion(moverBrazoDerechoSuperior);
+            BrazoDerechoSuperior.AgregarTransformacion(rotarBrazoDerechoSuperior);
 
-                        PiernaIzquierdaInferior3.AgregarTransformacion(rotarPiernaIzquierdaInferior3);
-                        PiernaIzquierdaInferior3.AgregarTransformacion(moverPiernaIzquierdaInferior3);
-                        PiernaIzquierdaInferior3.AgregarTransformacion(moverPiernaIzquierdaInferior33);
+            Accion BrazoDerechoInferior = new Accion("BrazoDerechoInferior", 5000, 11000);
+            Transformacion rotarBrazoDerechoInferior = new Transformacion("Rotacion", new Punto3D(-15.0f, 0, 0), 5000);
+            Transformacion moverBrazoDerechoInferior = new Transformacion("Traslacion", new Punto3D(0, 0.22f, 0.63f), 5000); 
+            BrazoDerechoInferior.AgregarTransformacion(moverBrazoDerechoInferior);
+            BrazoDerechoInferior.AgregarTransformacion(rotarBrazoDerechoInferior);
 
-                        Accion accionarPiernaDerechaSuperior3 = new Accion("PiernaDerechaSuperior", 5000, 21000);
-                        Transformacion rotarPiernaDerechaSuperior3 = new Transformacion("Rotacion", new Punto3D(3.5f, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaSuperior3 = new Transformacion("Traslacion", new Punto3D(0, 0.05f, 0.6f), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaSuperior33 = new Transformacion("Traslacion", new Punto3D(0, 0.12f, -0.22f), 5000); // Mover hacia adelante
+            Accion PiernaIzquierdaSuperior = new Accion("PiernaIzquierdaSuperior", 5000, 11000);
+            Transformacion rotarPiernaIzquierdaSuperior = new Transformacion("Rotacion", new Punto3D(20, 0, 0), 5000); 
+            Transformacion moverPiernaIzquierdaSuperior = new Transformacion("Traslacion", new Punto3D(0, 0.1f, 0.45f), 5000); 
+            PiernaIzquierdaSuperior.AgregarTransformacion(rotarPiernaIzquierdaSuperior);
+            PiernaIzquierdaSuperior.AgregarTransformacion(moverPiernaIzquierdaSuperior);
 
-                        accionarPiernaDerechaSuperior3.AgregarTransformacion(rotarPiernaDerechaSuperior3);
-                        accionarPiernaDerechaSuperior3.AgregarTransformacion(moverPiernaDerechaSuperior3);
-                        accionarPiernaDerechaSuperior3.AgregarTransformacion(moverPiernaDerechaSuperior33);
+            Accion PiernaIzquierdaInferior = new Accion("PiernaIzquierdaInferior", 5000, 11000);
+            Transformacion rotarPiernaIzquierdaInferior = new Transformacion("Rotacion", new Punto3D(20, 0, 0), 5000); 
+            Transformacion moverPiernaIzquierdaInferior = new Transformacion("Traslacion", new Punto3D(0, 0.1f, 0.2f), 5000);
+            PiernaIzquierdaInferior.AgregarTransformacion(rotarPiernaIzquierdaInferior);
+            PiernaIzquierdaInferior.AgregarTransformacion(moverPiernaIzquierdaInferior);
+
+            
+            //// PASO 2///
+            Accion PiernaIzquierdaSuperior2 = new Accion("PiernaIzquierdaSuperior", 5000, 16000);
+            Transformacion rotarPiernaIzquierdaSuperior2 = new Transformacion("Rotacion", new Punto3D(-40, 0, 0), 5000); 
+            Transformacion moverPiernaIzquierdaSuperior2 = new Transformacion("Traslacion", new Punto3D(0, -0.03f, 0.3f), 5000); 
+
+            PiernaIzquierdaSuperior2.AgregarTransformacion(rotarPiernaIzquierdaSuperior2);
+            PiernaIzquierdaSuperior2.AgregarTransformacion(moverPiernaIzquierdaSuperior2);
+
+            Accion PiernaIzquierdaInferior2 = new Accion("PiernaIzquierdaInferior", 5000, 16000);
+            Transformacion rotarPiernaIzquierdaInferior2 = new Transformacion("Rotacion", new Punto3D(-40, 0, 0), 5000); 
+            Transformacion moverPiernaIzquierdaInferior2 = new Transformacion("Traslacion", new Punto3D(0, -0.03f, 0.75f), 5000); 
+
+            PiernaIzquierdaInferior2.AgregarTransformacion(rotarPiernaIzquierdaInferior2);
+            PiernaIzquierdaInferior2.AgregarTransformacion(moverPiernaIzquierdaInferior2);
+
+            Accion torso2 = new Accion("Torso", 10000, 21000);
+            Transformacion movertorso2 = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 10000);
+            torso2.AgregarTransformacion(movertorso2);
+
+            Accion cabeza2 = new Accion("Cabeza", 10000, 21000);
+            Transformacion movercabeza2 = new Transformacion("Traslacion", new Punto3D(0, 0, 0.5f), 10000); 
+            cabeza2.AgregarTransformacion(movercabeza2);
+
+            Accion BrazoIzquierdoSuperior2 = new Accion("BrazoIzquierdoSuperior", 10000, 21000);
+            Transformacion rotarBrazoIzquierdoSuperior2 = new Transformacion("Rotacion", new Punto3D(45, 0, 0), 10000); 
+            Transformacion moverBrazoIzquierdoSuperior2 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, 0.4f), 10000);
+            BrazoIzquierdoSuperior2.AgregarTransformacion(moverBrazoIzquierdoSuperior2);
+            BrazoIzquierdoSuperior2.AgregarTransformacion(rotarBrazoIzquierdoSuperior2);
+
+            Accion BrazoIzquierdoInferior2 = new Accion("BrazoIzquierdoInferior", 10000, 21000);
+            Transformacion rotarBrazoIzquierdoInferior2 = new Transformacion("Rotacion", new Punto3D(45, 0, 0), 10000);
+            Transformacion moverBrazoIzquierdoInferior2 = new Transformacion("Traslacion", new Punto3D(0, -0.05f, -0.05f), 10000);
+            BrazoIzquierdoInferior2.AgregarTransformacion(moverBrazoIzquierdoInferior2);
+            BrazoIzquierdoInferior2.AgregarTransformacion(rotarBrazoIzquierdoInferior2);
+
+            Accion BrazoDerechoSuperior2 = new Accion("BrazoDerechoSuperior", 10000, 21000);
+            Transformacion rotarBrazoDerechoSuperior2 = new Transformacion("Rotacion", new Punto3D(-50.0f, 0, 0), 10000);
+            Transformacion moverBrazoDerechoSuperior2 = new Transformacion("Traslacion", new Punto3D(0, -0.09f, 0.6f), 10000);
+            BrazoDerechoSuperior2.AgregarTransformacion(rotarBrazoDerechoSuperior2);
+            BrazoDerechoSuperior2.AgregarTransformacion(moverBrazoDerechoSuperior2);                       
+
+            Accion BrazoDerechoInferior2 = new Accion("BrazoDerechoInferior", 10000, 21000);
+            Transformacion rotarBrazoDerechoInferior2 = new Transformacion("Rotacion", new Punto3D(-50.0f, 0, 0), 10000);
+            Transformacion moverBrazoDerechoInferior2 = new Transformacion("Traslacion", new Punto3D(0, -0.1f, 1.13f), 10000);
+            BrazoDerechoInferior2.AgregarTransformacion(moverBrazoDerechoInferior2);
+            BrazoDerechoInferior2.AgregarTransformacion(rotarBrazoDerechoInferior2);
+
+            Accion PiernaIzquierdaSuperior3 = new Accion("PiernaIzquierdaSuperior", 10000, 21000);
+            Transformacion rotarPiernaIzquierdaSuperior3 = new Transformacion("Rotacion", new Punto3D(20, 0, 0), 10000); 
+            Transformacion moverPiernaIzquierdaSuperior3 = new Transformacion("Traslacion", new Punto3D(0, -0.05f, 0.40f), 10000); 
+            Transformacion moverPiernaIzquierdaSuperior33 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, -0.1f), 10000); 
+            PiernaIzquierdaSuperior3.AgregarTransformacion(rotarPiernaIzquierdaSuperior3);
+            PiernaIzquierdaSuperior3.AgregarTransformacion(moverPiernaIzquierdaSuperior3);
+            PiernaIzquierdaSuperior3.AgregarTransformacion(moverPiernaIzquierdaSuperior33);
+
+            Accion PiernaIzquierdaInferior3 = new Accion("PiernaIzquierdaInferior", 10000, 21000);
+            Transformacion rotarPiernaIzquierdaInferior3 = new Transformacion("Rotacion", new Punto3D(20, 0, 0), 10000);
+            Transformacion moverPiernaIzquierdaInferior3 = new Transformacion("Traslacion", new Punto3D(0, -0.05f, 0.2f), 10000); 
+            Transformacion moverPiernaIzquierdaInferior33 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, -0.1f), 10000); 
+            PiernaIzquierdaInferior3.AgregarTransformacion(rotarPiernaIzquierdaInferior3);
+            PiernaIzquierdaInferior3.AgregarTransformacion(moverPiernaIzquierdaInferior3);
+            PiernaIzquierdaInferior3.AgregarTransformacion(moverPiernaIzquierdaInferior33);
+
+            Accion accionarPiernaDerechaSuperior3 = new Accion("PiernaDerechaSuperior", 10000, 21000);
+            Transformacion rotarPiernaDerechaSuperior3 = new Transformacion("Rotacion", new Punto3D(3.5f, 0, 0), 10000);
+            Transformacion moverPiernaDerechaSuperior3 = new Transformacion("Traslacion", new Punto3D(0, 0.05f, 0.6f), 10000);
+            Transformacion moverPiernaDerechaSuperior33 = new Transformacion("Traslacion", new Punto3D(0, 0.12f, -0.22f), 10000);            
+            accionarPiernaDerechaSuperior3.AgregarTransformacion(rotarPiernaDerechaSuperior3);
+            accionarPiernaDerechaSuperior3.AgregarTransformacion(moverPiernaDerechaSuperior3);
+            accionarPiernaDerechaSuperior3.AgregarTransformacion(moverPiernaDerechaSuperior33);
+
+            Accion accionarPiernaDerechaInferior4 = new Accion("PiernaDerechaInferior", 10000, 21000);
+            Transformacion rotarPiernaDerechaInferior4 = new Transformacion("Rotacion", new Punto3D(4, 0, 0), 10000);
+            Transformacion moverPiernaDerechaInferior4 = new Transformacion("Traslacion", new Punto3D(0, 0.05f, 0.6f), 10000);
+            Transformacion moverPiernaDerechaInferior44 = new Transformacion("Traslacion", new Punto3D(0, 0.05f, -0.15f), 10000);
+            accionarPiernaDerechaInferior4.AgregarTransformacion(rotarPiernaDerechaInferior4);
+            accionarPiernaDerechaInferior4.AgregarTransformacion(moverPiernaDerechaInferior4);
+            accionarPiernaDerechaInferior4.AgregarTransformacion(moverPiernaDerechaInferior44);
 
 
-                        Accion accionarPiernaDerechaInferior4 = new Accion("PiernaDerechaInferior", 5000, 21000);
-                        Transformacion rotarPiernaDerechaInferior4 = new Transformacion("Rotacion", new Punto3D(4, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaInferior4 = new Transformacion("Traslacion", new Punto3D(0, 0.05f, 0.6f), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaInferior44 = new Transformacion("Traslacion", new Punto3D(0, 0.05f, -0.15f), 5000); // Mover hacia adelante
+            //SALTO///
+            Accion BrazoIzquierdoSuperior3 = new Accion("BrazoIzquierdoSuperior", 1000, 33000);
+            Transformacion rotarBrazoIzquierdoSuperior3 = new Transformacion("Rotacion", new Punto3D(-30, 0, 0), 1000);
+            BrazoIzquierdoSuperior3.AgregarTransformacion(rotarBrazoIzquierdoSuperior3);
 
-                        accionarPiernaDerechaInferior4.AgregarTransformacion(rotarPiernaDerechaInferior4);
-                        accionarPiernaDerechaInferior4.AgregarTransformacion(moverPiernaDerechaInferior4);
-                        accionarPiernaDerechaInferior4.AgregarTransformacion(moverPiernaDerechaInferior44);
+            Accion BrazoIzquierdoInferior3 = new Accion("BrazoIzquierdoInferior", 1000, 33000);
+            Transformacion rotarBrazoIzquierdoInferior3 = new Transformacion("Rotacion", new Punto3D(-25f, 0, 0), 1000);
+            BrazoIzquierdoInferior3.AgregarTransformacion(rotarBrazoIzquierdoInferior3);
 
+            Accion BrazoDerechoSuperior3 = new Accion("BrazoDerechoSuperior", 1000, 33000);
+            Transformacion rotarBrazoDerechoSuperior3 = new Transformacion("Rotacion", new Punto3D(36.0f, 0, 0), 1000);
+            BrazoDerechoSuperior3.AgregarTransformacion(rotarBrazoDerechoSuperior3);
 
-                        //SALTO///
-
-                        Accion salto = new Accion("Robot", 10000, 26000);
-                        Transformacion salto1 = new Transformacion("Traslacion", new Punto3D(0.0f, 3.5f, 3f), 10000); // Mover hacia adelante
-                        Transformacion bajo = new Transformacion("Traslacion", new Punto3D(0.0f, -0.3f,0), 10000);
-                        salto.AgregarTransformacion(salto1);
-                        salto.AgregarTransformacion(bajo);
-
-
-                        //Patea
-                        Accion accionarPiernaDerechaSuperior4 = new Accion("PiernaDerechaSuperior", 5000, 36000);
-                        Transformacion rotarPiernaDerechaSuperior4 = new Transformacion("Rotacion", new Punto3D(-20, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaSuperior4 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, 0.1f), 5000); // Mover hacia adelante
-
-                        accionarPiernaDerechaSuperior4.AgregarTransformacion(rotarPiernaDerechaSuperior4);
-                        accionarPiernaDerechaSuperior4.AgregarTransformacion(moverPiernaDerechaSuperior4);
+            Accion BrazoDerechoInferior3 = new Accion("BrazoDerechoInferior", 1000, 33000);
+            Transformacion rotarBrazoDerechoInferior3 = new Transformacion("Rotacion", new Punto3D(36.0f, 0, 0), 1000);
+            Transformacion moverBrazoDerechoInferior3 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, -0.1f), 10000);
+            BrazoDerechoInferior3.AgregarTransformacion(rotarBrazoDerechoInferior3);
+            BrazoDerechoInferior3.AgregarTransformacion(moverBrazoDerechoInferior3);
 
 
-                        Accion accionarPiernaDerechaInferior5 = new Accion("PiernaDerechaInferior", 5000, 36000);
-                        Transformacion rotarPiernaDerechaInferior5 = new Transformacion("Rotacion", new Punto3D(-20, 0, 0), 5000); // Mover hacia adelante
-                        Transformacion moverPiernaDerechaInferior5 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, 0.3f), 5000); // Mover hacia adelante
+            Accion salto = new Accion("Robot", 10000, 35000);
+            Transformacion salto1 = new Transformacion("Traslacion", new Punto3D(0.0f, 3.5f, 3f), 10000);
+            Transformacion bajo = new Transformacion("Traslacion", new Punto3D(0.0f, -0.3f, 0), 10000);
+            salto.AgregarTransformacion(salto1);
+            salto.AgregarTransformacion(bajo);
 
-                        accionarPiernaDerechaInferior5.AgregarTransformacion(rotarPiernaDerechaInferior5);
-                        accionarPiernaDerechaInferior5.AgregarTransformacion(moverPiernaDerechaInferior5);
+            Accion BrazoIzquierdoInferior4 = new Accion("BrazoIzquierdoInferior", 1000, 46000);
+            Transformacion moverBrazoIzquierdoInferior4 = new Transformacion("Traslacion", new Punto3D(0.0f, 0.2f, 0), 1000);
+            BrazoIzquierdoInferior4.AgregarTransformacion(moverBrazoIzquierdoInferior4);
 
-                        Accion pelota = new Accion("Pelota", 10000, 41000);
-                        Transformacion rotarpelota = new Transformacion("Rotacion", new Punto3D(90, 90, 90), 10000); // Mover hacia adelante
-                        Transformacion moverpelota = new Transformacion("Traslacion", new Punto3D(0.0f, 5.0f, 5.0f), 10000);
-                        pelota.AgregarTransformacion(rotarpelota);
-                        pelota.AgregarTransformacion(moverpelota);
+            Accion BrazoDerechoInferior4 = new Accion("BrazoDerechoInferior", 1000, 46000);
+            Transformacion moverBrazoDerechoInferior4 = new Transformacion("Traslacion", new Punto3D(0.0f, -0.35f, -0.03f), 1000);
+            BrazoDerechoInferior4.AgregarTransformacion(moverBrazoDerechoInferior4);
 
-                        Escena escenaCaminar = new Escena();
-                        escenaCaminar.AgregarAccion(girarRobot);
+            //Patea
+            Accion accionarPiernaDerechaSuperior4 = new Accion("PiernaDerechaSuperior", 5000, 45000);
+            Transformacion rotarPiernaDerechaSuperior4 = new Transformacion("Rotacion", new Punto3D(-20, 0, 0), 5000); // Mover hacia adelante
+            Transformacion moverPiernaDerechaSuperior4 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, 0.1f), 5000); // Mover hacia adelante
+            accionarPiernaDerechaSuperior4.AgregarTransformacion(rotarPiernaDerechaSuperior4);
+            accionarPiernaDerechaSuperior4.AgregarTransformacion(moverPiernaDerechaSuperior4);
 
-                        ///PASO 1
-                        escenaCaminar.AgregarAccion(accionarPiernaDerechaSuperior);
-                        escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior);            
-                        escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior2);            
-                        escenaCaminar.AgregarAccion(accionarPiernaDerechaSuperior2);
-                        escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior3);            
-                        escenaCaminar.AgregarAccion(torso);
-                        escenaCaminar.AgregarAccion(cabeza);
-                        escenaCaminar.AgregarAccion(BrazoDerechoSuperior);
-                        escenaCaminar.AgregarAccion(BrazoIzquierdoSuperior);
-                        escenaCaminar.AgregarAccion(BrazoIzquierdoInferior);
-                        escenaCaminar.AgregarAccion(BrazoDerechoInferior);
-                        escenaCaminar.AgregarAccion(PiernaIzquierdaSuperior);
-                        escenaCaminar.AgregarAccion(PiernaIzquierdaInferior);
 
-                        ///PASO 2
-                        escenaCaminar.AgregarAccion(PiernaIzquierdaSuperior2);
-                        escenaCaminar.AgregarAccion(PiernaIzquierdaInferior2);
-                        escenaCaminar.AgregarAccion(torso2);
-                        escenaCaminar.AgregarAccion(cabeza2);
-                        escenaCaminar.AgregarAccion(BrazoDerechoSuperior2);
-                        escenaCaminar.AgregarAccion(BrazoIzquierdoSuperior2);
-                        escenaCaminar.AgregarAccion(BrazoIzquierdoInferior2);
-                        escenaCaminar.AgregarAccion(BrazoDerechoInferior2);
-                        escenaCaminar.AgregarAccion(PiernaIzquierdaSuperior3);
-                        escenaCaminar.AgregarAccion(PiernaIzquierdaInferior3);
-                        escenaCaminar.AgregarAccion(accionarPiernaDerechaSuperior3);
-                        escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior4);
+            Accion accionarPiernaDerechaInferior5 = new Accion("PiernaDerechaInferior", 5000, 45000);
+            Transformacion rotarPiernaDerechaInferior5 = new Transformacion("Rotacion", new Punto3D(-20, 0, 0), 5000); // Mover hacia adelante
+            Transformacion moverPiernaDerechaInferior5 = new Transformacion("Traslacion", new Punto3D(0, 0.0f, 0.3f), 5000); // Mover hacia adelante
 
-                        //SALTO
-                        escenaCaminar.AgregarAccion(accionarPiernaDerechaSuperior4);
-                        escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior5);
+            accionarPiernaDerechaInferior5.AgregarTransformacion(rotarPiernaDerechaInferior5);
+            accionarPiernaDerechaInferior5.AgregarTransformacion(moverPiernaDerechaInferior5);
 
-                        //PATEA
-                        escenaCaminar.AgregarAccion(salto);
-                        escenaCaminar.AgregarAccion(pelota);
-                        Console.WriteLine("escenaCaminar" +escenaCaminar.TiempoTotal);
+            Accion pelota = new Accion("Pelota", 20000, 50000);
+            Transformacion rotarpelota = new Transformacion("Rotacion", new Punto3D(90, 90, 90), 20000); // Mover hacia adelante
+            Transformacion moverpelota = new Transformacion("Traslacion", new Punto3D(0.0f, 5.0f, 5.0f), 20000);
+            pelota.AgregarTransformacion(rotarpelota);
+            pelota.AgregarTransformacion(moverpelota);
+            
+            
 
+
+            Escena escenaCaminar = new Escena();
+            escenaCaminar.AgregarAccion(girarRobot);
+
+            ///PASO 1
+            escenaCaminar.AgregarAccion(accionarPiernaDerechaSuperior);
+            escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior);
+
+            
+            escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior2);
+            escenaCaminar.AgregarAccion(BrazoIzquierdoSuperior0);
+            escenaCaminar.AgregarAccion(BrazoIzquierdoInferior0);
+            escenaCaminar.AgregarAccion(BrazoDerechoSuperior0);
+            escenaCaminar.AgregarAccion(BrazoDerechoInferior0);
+
+            
+            escenaCaminar.AgregarAccion(accionarPiernaDerechaSuperior2);
+            escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior3);
+            escenaCaminar.AgregarAccion(torso);
+            escenaCaminar.AgregarAccion(cabeza);
+            escenaCaminar.AgregarAccion(BrazoIzquierdoSuperior);
+            escenaCaminar.AgregarAccion(BrazoIzquierdoInferior);
+            escenaCaminar.AgregarAccion(BrazoDerechoSuperior);
+            escenaCaminar.AgregarAccion(BrazoDerechoInferior);
+            escenaCaminar.AgregarAccion(PiernaIzquierdaSuperior);
+            escenaCaminar.AgregarAccion(PiernaIzquierdaInferior);
+            
+            ///PASO 2
+            escenaCaminar.AgregarAccion(PiernaIzquierdaSuperior2);
+            escenaCaminar.AgregarAccion(PiernaIzquierdaInferior2);
+            escenaCaminar.AgregarAccion(torso2);
+            escenaCaminar.AgregarAccion(cabeza2);
+            escenaCaminar.AgregarAccion(BrazoDerechoSuperior2);
+            escenaCaminar.AgregarAccion(BrazoDerechoInferior2);
+            escenaCaminar.AgregarAccion(BrazoIzquierdoSuperior2);
+            escenaCaminar.AgregarAccion(BrazoIzquierdoInferior2);          
+            escenaCaminar.AgregarAccion(PiernaIzquierdaSuperior3);
+            escenaCaminar.AgregarAccion(PiernaIzquierdaInferior3);
+            
+            escenaCaminar.AgregarAccion(accionarPiernaDerechaSuperior3);
+            escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior4);
+
+
+            //SALTO
+            escenaCaminar.AgregarAccion(BrazoDerechoSuperior3);
+            escenaCaminar.AgregarAccion(BrazoDerechoInferior3);
+            escenaCaminar.AgregarAccion(BrazoIzquierdoSuperior3);
+            escenaCaminar.AgregarAccion(BrazoIzquierdoInferior3);
+            escenaCaminar.AgregarAccion(salto);
+
+            escenaCaminar.AgregarAccion(BrazoIzquierdoInferior4);
+            escenaCaminar.AgregarAccion(BrazoDerechoInferior4);
+
+            escenaCaminar.AgregarAccion(accionarPiernaDerechaSuperior4);
+            escenaCaminar.AgregarAccion(accionarPiernaDerechaInferior5);
+            //PATEA
+            escenaCaminar.AgregarAccion(pelota);
+            Console.WriteLine("escenaCaminar" + escenaCaminar.TiempoTotal);
+            
             */
-
             // Agregar la escena al libreto
             libreto = new Libreto();
+            //libreto.AgregarEscena(escenaCaminar);
         }
 
         private void GlControlRender(object sender, PaintEventArgs e)
@@ -601,9 +677,105 @@ namespace WindowsFormsApp1
             x.Value = 1.0m;
             y.Value = 1.0m;
             z.Value = 1.0m;
-
+            libreto.tiempoAcumulado = libreto.tiempoTotal;
             escenario.ReiniciarTransformaciones();
         }
+
+        
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (escenario.objetos == null || !escenario.objetos.Any())
+            {
+                MessageBox.Show("No tienes un escenario cargado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (libreto.Escenas == null || !libreto.Escenas.Any())
+            {
+                MessageBox.Show("No tienes un libreto cargado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
+            }
+
+            reiniciar_Click(sender, e);
+            pausaEvento.Set();
+            libreto.Reiniciar();
+            
+            double time = 0;
+            Task.Run(() =>
+            {               
+                while (!libreto.IsCompleto())
+                {
+                    pausaEvento.WaitOne();
+                    libreto.EjecutarEscena(escenario, ref time);
+                    Thread.Sleep(10); 
+                    time += 10;
+                }
+                Console.WriteLine("Animación completada.");
+            });
+        }
+
+        private void pausar_Click(object sender, EventArgs e)
+        {
+            if (pausaEvento.WaitOne(0)) 
+            {
+                pausaEvento.Reset();
+
+            }
+            else
+            {
+                pausaEvento.Set();
+            }
+        }
+
+
+        private void cargarAToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string filePath = null;
+
+            using (var openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "JSON files (*.json)|*.json";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+                }
+            }
+            if (filePath != null)
+            {
+                libreto = Serializable.DeserializeA(filePath);
+                libreto.tiempoTotal = 0;
+
+                foreach (var escena in libreto.Escenas)
+                {
+                    escena.TiempoTotal = 0; 
+                    foreach (var accion in escena.Acciones)
+                    {
+                        escena.TiempoTotal += accion.Tiempo;
+                    }
+                    libreto.tiempoTotal += escena.TiempoTotal; 
+                }
+                lienzoControl.Invalidate();
+            }
+        }
+
+        private void guardarAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+                saveFileDialog.Title = "Guardar Escenario";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = saveFileDialog.FileName;
+                    Serializable.SerializeA(libreto, rutaArchivo);
+                    MessageBox.Show("Escenario guardado exitosamente.");
+                }
+            }
+        }
+
+
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -635,78 +807,6 @@ namespace WindowsFormsApp1
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            libreto.Reiniciar();
-            Task.Run(() =>
-            {
-                double time = 0;
-                while (!libreto.IsCompleto())
-                {
-                    libreto.EjecutarEscena(escenario, ref time);
-                    Thread.Sleep(10); // Ajusta según el tiempo de fotogramas
-                    time += 10;
-                }
-                Console.WriteLine("Animación completada.");
-            });
-        }
-
-        private void ReiniciarAnimacion()
-        {
-            
-
-        }
-
-        public void DetenerAnimacion()
-        {
-            isAnimating = false; 
-        }
-
-        private void cargarAToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            string filePath = null;
-
-            using (var openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "JSON files (*.json)|*.json";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    filePath = openFileDialog.FileName;
-                }
-            }
-            if (filePath != null)
-            {
-                libreto = Serializable.DeserializeA(filePath);
-                libreto.tiempoTotal = 0;
-
-                // Calcular el tiempo total de cada escena y el tiempo total del libreto
-                foreach (var escena in libreto.Escenas)
-                {
-                    escena.TiempoTotal = 0;  // Reinicia el tiempo total de la escena antes de acumular
-                    foreach (var accion in escena.Acciones)
-                    {
-                        escena.TiempoTotal += accion.Tiempo;
-                    }
-                    libreto.tiempoTotal += escena.TiempoTotal;  // Sumar el tiempo total de la escena al libreto
-                }
-                lienzoControl.Invalidate();
-            }
-        }
-
-        private void guardarAToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
-                saveFileDialog.Title = "Guardar Escenario";
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string rutaArchivo = saveFileDialog.FileName;
-                    Serializable.SerializeA(libreto, rutaArchivo);
-                    MessageBox.Show("Escenario guardado exitosamente.");
-                }
-            }
-        }
+        
     }
 }
