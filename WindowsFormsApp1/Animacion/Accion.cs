@@ -10,14 +10,23 @@ namespace WindowsFormsApp1.Animacion
     using System.Threading;
     using System.Threading.Tasks;
 
+    public enum EstadoAccion
+    {
+        Pendiente,
+        EnEjecucion,
+        Completada
+    }
+
     public class Accion
     {
         public string Nombre { get; set; }
         public List<Transformacion> Transformaciones { get; set; }
-        public int Tiempo { get; set; } // Duración de la acción en milisegundos
-        public int TiempoInicio { get; set; } // Tiempo en que debe iniciar la acción
+        public int Tiempo { get; set; }
+        public int TiempoInicio { get; set; } 
 
-        private double tiempoAcumulado; // Lleva el tiempo acumulado para controlar cuándo iniciar
+        private double tiempoAcumulado;
+        public EstadoAccion Estado { get; private set; }
+
 
         public Accion(string nombre, int tiempo, int tiempoInicio)
         {
@@ -25,7 +34,8 @@ namespace WindowsFormsApp1.Animacion
             Transformaciones = new List<Transformacion>();
             Tiempo = tiempo;
             TiempoInicio = tiempoInicio;
-            tiempoAcumulado = 0; // Inicia el tiempo acumulado en cero
+            tiempoAcumulado = 0;
+            Estado = EstadoAccion.Pendiente;
         }
 
         public void AgregarTransformacion(Transformacion transformacion)
@@ -35,11 +45,13 @@ namespace WindowsFormsApp1.Animacion
 
         public void Ejecutar(Escenario escenario, ref double time)
         {
-            // Verificar si el tiempo acumulado ha alcanzado el tiempo de inicio de esta acción
             if (tiempoAcumulado >= TiempoInicio && tiempoAcumulado <= TiempoInicio + Tiempo)
             {
-               
-                // Ejecutar las transformaciones en el objeto correspondiente si el tiempo es adecuado
+
+                if (Estado == EstadoAccion.Pendiente) { 
+                    Estado = EstadoAccion.EnEjecucion;
+                }
+                
                 if (escenario.objetos.TryGetValue(Nombre, out Objeto objeto))
                 {
                     EjecutarTransformaciones(objeto, ref time);
@@ -55,6 +67,9 @@ namespace WindowsFormsApp1.Animacion
                         }
                     }
                 }
+            }else if (tiempoAcumulado > TiempoInicio + Tiempo && Estado == EstadoAccion.EnEjecucion)
+            {
+                Estado = EstadoAccion.Completada; 
             }
 
             tiempoAcumulado += time;
@@ -62,7 +77,7 @@ namespace WindowsFormsApp1.Animacion
 
         private void EjecutarTransformaciones(dynamic objeto, ref double time)
         {
-            double tiempoRestante = Tiempo - tiempoAcumulado + TiempoInicio; // Tiempo restante para la transformación actual
+            double tiempoRestante = Tiempo - tiempoAcumulado + TiempoInicio; 
 
 
             foreach (var transformacion in Transformaciones)
@@ -74,7 +89,6 @@ namespace WindowsFormsApp1.Animacion
                     float incrementoY = (float)(transformacion.Valor.Y * (time / transformacion.Duracion));
                     float incrementoZ = (float)(transformacion.Valor.Z * (time / transformacion.Duracion));
 
-                    // Ajusta la transformación si supera el valor final, teniendo en cuenta el signo
                     if (Math.Abs(transformacion.x + incrementoX) > Math.Abs(transformacion.Valor.X) ||
                         Math.Abs(transformacion.y + incrementoY) > Math.Abs(transformacion.Valor.Y) ||
                         Math.Abs(transformacion.z + incrementoZ) > Math.Abs(transformacion.Valor.Z))
@@ -90,7 +104,7 @@ namespace WindowsFormsApp1.Animacion
                     transformacion.y += incrementoY;
                     transformacion.z += incrementoZ;
 
-                    Console.WriteLine(transformacion.z);
+                   // Console.WriteLine(transformacion.z);
                 }
 
 
@@ -99,7 +113,7 @@ namespace WindowsFormsApp1.Animacion
 
         public void Reiniciar()
         {
-            // Reiniciar el tiempo acumulado y las transformaciones
+            Estado = EstadoAccion.Pendiente;
             tiempoAcumulado = 0;
             foreach (var transformacion in Transformaciones)
             {

@@ -113,56 +113,8 @@ namespace WindowsFormsApp1.Objetos
 
 
 
-////////////// Brazo Izquierdo Superior (color Azul)/////////////////////////////
-            var brazoIzquierdoSuperior = new Parte(new Punto3D(-0.6f, 0.7f, 0f));
-            brazoIzquierdoSuperior.AgregarPoligono("Frontal", new Poligono(new float[]
-            {
-                -0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            brazoIzquierdoSuperior.AgregarPoligono("Trasera", new Poligono(new float[]
-            {
-                -0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                -0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            brazoIzquierdoSuperior.AgregarPoligono("Superior", new Poligono(new float[]
-            {
-                -0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                -0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            brazoIzquierdoSuperior.AgregarPoligono("Inferior", new Poligono(new float[]
-            {
-                -0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            brazoIzquierdoSuperior.AgregarPoligono("Izquierda", new Poligono(new float[]
-            {
-                -0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                -0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                -0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            brazoIzquierdoSuperior.AgregarPoligono("Derecha", new Poligono(new float[]
-            {
-                 0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            robot.AgregarParte("BrazoIzquierdoSuperior", brazoIzquierdoSuperior);
-
-
-
 ////////////// Brazo Derecho Superior (color Azul)/////////////////////////////
-            var brazoDerechoSuperior = new Parte(new Punto3D(0.6f, 0.7f, 0f));
+            var brazoDerechoSuperior = new Parte(new Punto3D(-0.6f, 0.7f, 0f));
             brazoDerechoSuperior.AgregarPoligono("Frontal", new Poligono(new float[]
             {
                 -0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
@@ -179,87 +131,86 @@ namespace WindowsFormsApp1.Objetos
             }));
             brazoDerechoSuperior.AgregarPoligono("Superior", new Poligono(new float[]
             {
+                -0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
                 -0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
                  0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
                  0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                -0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
             }));
             brazoDerechoSuperior.AgregarPoligono("Inferior", new Poligono(new float[]
             {
-                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
                 -0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
                  0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
                  0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
             }));
             brazoDerechoSuperior.AgregarPoligono("Izquierda", new Poligono(new float[]
             {
-                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                -0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
                 -0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
                 -0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
             }));
             brazoDerechoSuperior.AgregarPoligono("Derecha", new Poligono(new float[]
             {
-                 0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
                  0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
                  0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
             }));
             robot.AgregarParte("BrazoDerechoSuperior", brazoDerechoSuperior);
 
 
 
-////////////// Brazo Izquierdo Inferior (color Blanco)/////////////////////////////
-            var brazoIzquierdoInferior = new Parte(new Punto3D(-0.6f, 0.1f, 0f));
-            brazoIzquierdoInferior.AgregarPoligono("Frontal", new Poligono(new float[]
+////////////// Brazo Izquierdo Superior (color Azul)/////////////////////////////
+            var brazoIzquierdoSuperior = new Parte(new Punto3D(0.6f, 0.7f, 0f));
+            brazoIzquierdoSuperior.AgregarPoligono("Frontal", new Poligono(new float[]
             {
-                -0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                -0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                -0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            brazoIzquierdoInferior.AgregarPoligono("Trasera", new Poligono(new float[]
+            brazoIzquierdoSuperior.AgregarPoligono("Trasera", new Poligono(new float[]
             {
-                -0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                -0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            brazoIzquierdoInferior.AgregarPoligono("Superior", new Poligono(new float[]
+            brazoIzquierdoSuperior.AgregarPoligono("Superior", new Poligono(new float[]
             {
-                -0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                -0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            brazoIzquierdoInferior.AgregarPoligono("Inferior", new Poligono(new float[]
+            brazoIzquierdoSuperior.AgregarPoligono("Inferior", new Poligono(new float[]
             {
-                -0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                -0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            brazoIzquierdoInferior.AgregarPoligono("LateralIzquierda", new Poligono(new float[]
+            brazoIzquierdoSuperior.AgregarPoligono("Izquierda", new Poligono(new float[]
             {
-                -0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                -0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                -0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                -0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                -0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            brazoIzquierdoInferior.AgregarPoligono("LateralDerecha", new Poligono(new float[]
+            brazoIzquierdoSuperior.AgregarPoligono("Derecha", new Poligono(new float[]
             {
-                 0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                 0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                 0.2f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.2f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            robot.AgregarParte("BrazoIzquierdoInferior", brazoIzquierdoInferior);
-
+            robot.AgregarParte("BrazoIzquierdoSuperior", brazoIzquierdoSuperior);
 
 
 
 ////////////// Brazo Derecho Inferior (color Blanco)/////////////////////////////
-            var brazoDerechoInferior = new Parte(new Punto3D(0.6f, 0.1f, 0f));
+            var brazoDerechoInferior = new Parte(new Punto3D(-0.6f, 0.1f, 0f));
             brazoDerechoInferior.AgregarPoligono("Frontal", new Poligono(new float[]
             {
                 -0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
@@ -307,56 +258,57 @@ namespace WindowsFormsApp1.Objetos
 
 
 
+////////////// Brazo Izquierdo Inferior (color Blanco)/////////////////////////////
+            var brazoIzquierdoInferior = new Parte(new Punto3D(0.6f, 0.1f, 0f));
+            brazoIzquierdoInferior.AgregarPoligono("Frontal", new Poligono(new float[]
+            {
+                -0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            brazoIzquierdoInferior.AgregarPoligono("Trasera", new Poligono(new float[]
+            {
+                -0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            brazoIzquierdoInferior.AgregarPoligono("Superior", new Poligono(new float[]
+            {
+                -0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            brazoIzquierdoInferior.AgregarPoligono("Inferior", new Poligono(new float[]
+            {
+                -0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            brazoIzquierdoInferior.AgregarPoligono("LateralIzquierda", new Poligono(new float[]
+            {
+                -0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            brazoIzquierdoInferior.AgregarPoligono("LateralDerecha", new Poligono(new float[]
+            {
+                 0.15f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            robot.AgregarParte("BrazoIzquierdoInferior", brazoIzquierdoInferior);
+
+
+
+
 ////////////// Pierna Derecho Inferior (color Azul)/////////////////////////////
-            var piernaIzquierdaSuperior = new Parte(new Punto3D(-0.2f, -0.3f, 0f));
-            piernaIzquierdaSuperior.AgregarPoligono("Frontal", new Poligono(new float[]
-            {
-                -0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                -0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            piernaIzquierdaSuperior.AgregarPoligono("Trasera", new Poligono(new float[]
-            {
-                -0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                -0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            piernaIzquierdaSuperior.AgregarPoligono("Superior", new Poligono(new float[]
-            {
-                -0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                -0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            piernaIzquierdaSuperior.AgregarPoligono("Inferior", new Poligono(new float[]
-            {
-                -0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                -0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            piernaIzquierdaSuperior.AgregarPoligono("Izquierda", new Poligono(new float[]
-            {
-                -0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                -0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                -0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                -0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            piernaIzquierdaSuperior.AgregarPoligono("Derecha", new Poligono(new float[]
-            {
-                 0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
-                 0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
-            }));
-            robot.AgregarParte("PiernaIzquierdaSuperior", piernaIzquierdaSuperior);
-
-
-
-////////////// Pierna Derecho Inferior (color Azul)/////////////////////////////
-            var piernaDerechaSuperior = new Parte(new Punto3D(0.2f, -0.3f, 0f));
+            var piernaDerechaSuperior = new Parte(new Punto3D(-0.2f, -0.3f, 0f));
             piernaDerechaSuperior.AgregarPoligono("Frontal", new Poligono(new float[]
             {
                 -0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
@@ -403,56 +355,56 @@ namespace WindowsFormsApp1.Objetos
 
 
 
-////////////// Pierna Izquierdo Inferior (color Blanco)/////////////////////////////
-            var piernaIzquierdaInferior = new Parte(new Punto3D(-0.2f, -0.9f, 0f));
-            piernaIzquierdaInferior.AgregarPoligono("Frontal", new Poligono(new float[]
+////////////// Pierna Izquierda Inferior (color Azul)/////////////////////////////
+            var piernaIzquierdaSuperior = new Parte(new Punto3D(0.2f, -0.3f, 0f));
+            piernaIzquierdaSuperior.AgregarPoligono("Frontal", new Poligono(new float[]
             {
-                -0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                -0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                -0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            piernaIzquierdaInferior.AgregarPoligono("Posterior", new Poligono(new float[]
+            piernaIzquierdaSuperior.AgregarPoligono("Trasera", new Poligono(new float[]
             {
-                -0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                -0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                -0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            piernaIzquierdaInferior.AgregarPoligono("Izquierda", new Poligono(new float[]
+            piernaIzquierdaSuperior.AgregarPoligono("Superior", new Poligono(new float[]
             {
-                -0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                -0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                -0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                -0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                -0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            piernaIzquierdaInferior.AgregarPoligono("Derecha", new Poligono(new float[]
+            piernaIzquierdaSuperior.AgregarPoligono("Inferior", new Poligono(new float[]
             {
-                 0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                -0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            piernaIzquierdaInferior.AgregarPoligono("Superior", new Poligono(new float[]
+            piernaIzquierdaSuperior.AgregarPoligono("Izquierda", new Poligono(new float[]
             {
-                -0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                -0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                -0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                -0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                -0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            piernaIzquierdaInferior.AgregarPoligono("Inferior", new Poligono(new float[]
+            piernaIzquierdaSuperior.AgregarPoligono("Derecha", new Poligono(new float[]
             {
-                -0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
-                 0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
-                -0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                 0.15f, 0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, 0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, -0.3f, 0.1f, 0.0f, 0.0f, 1.0f,
+                 0.15f, -0.3f, -0.1f, 0.0f, 0.0f, 1.0f,
             }));
-            robot.AgregarParte("PiernaIzquierdaInferior", piernaIzquierdaInferior);
+            robot.AgregarParte("PiernaIzquierdaSuperior", piernaIzquierdaSuperior);
 
 
 
-////////////// Pierna Derecho Inferior (color Blanco)/////////////////////////////
-            var piernaDerechaInferior = new Parte(new Punto3D(0.2f, -0.9f, 0f));
+////////////// Pierna Derecha Inferior (color Blanco)/////////////////////////////
+            var piernaDerechaInferior = new Parte(new Punto3D(-0.2f, -0.9f, 0f));
             piernaDerechaInferior.AgregarPoligono("Frontal", new Poligono(new float[]
             {
                 -0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
@@ -496,6 +448,54 @@ namespace WindowsFormsApp1.Objetos
                 -0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
             }));
             robot.AgregarParte("PiernaDerechaInferior", piernaDerechaInferior);
+
+
+
+////////////// Pierna Derecho Inferior (color Blanco)/////////////////////////////
+            var piernaIzquierdaInferior = new Parte(new Punto3D(0.2f, -0.9f, 0f));
+            piernaIzquierdaInferior.AgregarPoligono("Frontal", new Poligono(new float[]
+            {
+                -0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                -0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            piernaIzquierdaInferior.AgregarPoligono("Posterior", new Poligono(new float[]
+            {
+                -0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            piernaIzquierdaInferior.AgregarPoligono("Izquierda", new Poligono(new float[]
+            {
+                -0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                -0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            piernaIzquierdaInferior.AgregarPoligono("Derecha", new Poligono(new float[]
+            {
+                 0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            piernaIzquierdaInferior.AgregarPoligono("Superior", new Poligono(new float[]
+            {
+                -0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, 0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.13f, 0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            piernaIzquierdaInferior.AgregarPoligono("Inferior", new Poligono(new float[]
+            {
+                -0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, -0.3f, 0.1f, 1.0f, 1.0f, 1.0f,
+                 0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+                -0.13f, -0.3f, -0.1f, 1.0f, 1.0f, 1.0f,
+            }));
+            robot.AgregarParte("PiernaIzquierdaInferior", piernaIzquierdaInferior);
 
 
             return robot;
